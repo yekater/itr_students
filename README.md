@@ -1,25 +1,122 @@
-# iTR+ · Curso OSINT para abogados
+# iTR+ — Curso de investigación digital para estudiantes
 
-Landing estática Astro con React y TypeScript, Tailwind v4, Motion y escena Three.js diferida. Todo el contenido comercial esencial está en HTML; el programa y FAQ funcionan sin JavaScript. Expediente simulado accesible, selector jurídico, planificación orientativa y PDF real de 38 lecciones generado desde los mismos datos.
+Landing page de la formación **iTR+ de investigación digital para estudiantes**, creada con [Astro](https://astro.build), React y TypeScript.
 
-## Desarrollo
+- **100 % estática**: todo el contenido comercial esencial (hero, programa, FAQ, salidas laborales) funciona sin JavaScript.
+- **Multilingüe**: ES / CA / EN con detección del idioma del navegador en `/`.
+- **Datos centralizados**: el contenido vive en `src/data/` en lugar de estar repartido por los componentes.
+- **PDF real**: el programa descargable con 7 módulos y 38 lecciones se genera automáticamente en el build desde los mismos datos, siempre sincronizado con la web.
+- **Demo interactiva**: un caso simulado de investigación en fuentes abiertas (localizar, contrastar, concluir, documentar) funciona como isla React accesible.
+- **Sin rastreadores**: no hay analítica ni cookies de marketing activas sin consentimiento; el banner cumple criterios AEPD.
 
-Node 24, npm. En este entorno: `npm ci --cache /workspace/.npm-cache`. Después: `npm run dev`. `npm run check` valida tipos; `npm run build` genera PDF y dist; `npm run preview` sirve el resultado. `npm test` ejecuta Chromium y axe (configurado /usr/bin/chromium; adaptar executablePath en otras máquinas). `node scripts/assets.mjs` regenera la imagen social. `npm run audit` requiere preview activo en 4321. No hay secretos requeridos.
+## Requisitos
 
-## Contenido y operación
+| Herramienta | Versión recomendada |
+|---|---|
+| [Node.js](https://nodejs.org) | 20 o superior (probado con Node 24) |
+| npm | incluido con Node |
+| Navegador | para desarrollo y pruebas, cualquiera moderno |
 
-Datos en src/data; enlaces Odoo en src/lib/links.ts. Analítica desactivada, sin formulario local ni cookies de marketing. Precio y estrategia solo en docs, que nunca debe desplegarse. Preview noindex por defecto; copia .env.example y configura dominio real antes de producción. dist es el único directorio publicable.
+No se necesitan credenciales, claves ni variables de entorno para arrancar en local.
 
-Consulta docs/trazabilidad-contenido.md, docs/fuentes-y-verificaciones.md, docs/medicion-y-odoo.md y docs/despliegue.md. Faltan dominio final, identidad/documentos legales y confirmación de condiciones comerciales señaladas; no impiden desarrollo ni preview, pero sí una publicación definitiva responsable. No se ha publicado ni modificado Odoo.
+## Instalación y arranque
 
-## Vista HTML sin instalación
+```bash
+# 1. Clonar el repositorio
+git clone https://github.com/yekater/itr_students.git
+cd itr_students
 
-Descarga `preview/iTR-preview.html` desde GitHub con «Download raw file» y ábrelo en el navegador. Incluye estilos, Inter, IBM Plex Sans, PDF e interacciones. Se regenera con `npm run export:html`; el exportador escribe dentro del repositorio y no necesita rutas propias del entorno en nube.
+# 2. Instalar dependencias
+npm ci        # o npm install si npm ci falla
 
-Hero actualizado: una secuencia SVG de 16 segundos muestra cómo fuentes públicas transmiten información al análisis, se contrastan relaciones y se prepara un expediente. El documento aparece, se completa por líneas y recibe una marca final; las fases se muestran en texto HTML, sin rótulos incrustados que puedan desbordar. Incluye respuesta al puntero y pausa. En pantallas compactas, puntero grueso, ahorro de datos o movimiento reducido, la red permanece estática. Al salir de vista o al ocultarse la pestaña, la animación se pausa. Las dos fuentes corporativas también se usan en el PDF y en la imagen social.
+# 3. Servidor de desarrollo (http://localhost:4321)
+npm run dev
+```
 
-## Estudio autónomo, acceso y orientación profesional
+Con el servidor de desarrollo en marcha podrás abrir:
 
-Las condiciones indicadas por la cliente el 22/10/2026 están centralizadas en `src/data/course-format.ts`: PDF por módulo con enlaces a vídeos, recursos, foro con el creador y el mentor, estudio sin plazo y acceso permanente con login. Se reutilizan en Formación, FAQ y PDF descargable. El generador produce diez páginas con Inter e IBM Plex Sans, incluidos siete módulos y 38 lecciones.
+- `/` — versión en español
+- `/ca/` — versión en catalán
+- `/en/` — versión en inglés
+- `/aviso-legal/`, `/politica-de-privacidad/`, `/politica-de-cookies/`, `/accesibilidad/` — páginas legales
 
-El FAQ incorpora ejemplos de CV, titulares y aptitudes de LinkedIn, además de estadísticas internacionales con enlaces a fuentes primarias, territorio y periodo. `docs/empleabilidad-y-fuentes.md` registra la consulta y sus límites; los datos de BLS y del gobierno británico no son resultados de alumnos de iTR+. Las pruebas de PDF requieren Poppler (`pdftotext`), además de Chromium. No se han creado un foro, PDFs lectivos ni una integración nueva en Odoo.
+### Scripts disponibles
+
+| Comando | Qué hace |
+|---|---|
+| `npm run dev` | Servidor de desarrollo con recarga en caliente |
+| `npm run build` | Genera el PDF del programa y compila la web en `dist/` |
+| `npm run preview` | Sirve la build de `dist/` (por defecto en `http://localhost:4321`) |
+| `npm run check` | Comprobación de tipos de TypeScript y Astro |
+| `npm test` | Test E2E con Playwright + auditoría de accesibilidad con axe (necesita Chromium; ver más abajo) |
+| `npm run audit` | Auditoría Lighthouse (requiere un preview activo en el puerto 4321) |
+| `node scripts/assets.mjs` | Regenera la imagen social |
+
+## Tests
+
+Los tests end-to-end están escritos con [@playwright/test](https://playwright.dev) y cubren:
+
+- Navegación completa por la página (mapa de IDs, FAQ sin JavaScript, descarga del PDF)
+- Paridad de contenido entre los tres idiomas (planificador, FAQ, competencias, cookies)
+- La demo de investigación interactiva de principio a fin
+- Banner de cookies, responsive sin overflow horizontal y auditoría de accesibilidad axe
+- Vista responsive hasta 320 px y carga diferida de la hero en las resoluciones principales
+
+```bash
+npx playwright install chromium   # la primera vez
+npx playwright test               # ejecuta la suite (29 tests)
+```
+
+Por defecto la configuración arranca un servidor de preview propio en el puerto **4322**; si tienes algo en ese puerto, ciérralo antes.
+
+## Estructura del proyecto
+
+```
+src/
+├── components/     # Componentes Astro (hero, FAQ, planner, demo...)
+│   ├── hero/       # HeroSection, escena de vídeo y script de reproducción
+│   └── investigation-demo/  # Demo interactiva (React)
+├── data/           # TODO el contenido: site.ts, locales.ts, curriculum.ts...
+├── pages/          # index.astro (ES), [locale]/ (CA/EN) y páginas legales
+├── lib/            # Utilidades (enlaces Odoo, analítica, consentimiento)
+└── styles/         # Estilos globales y de la hero
+
+public/             # Vídeos, imágenes, fuentes y PDF generado
+scripts/            # Generador del PDF (generate-program.ts) y utilidades
+tests/              # Suite E2E con Playwright
+docs/               # Documentación interna (briefing, QA, despliegue)
+```
+
+### Dónde editar el contenido
+
+| Quieres cambiar… | Mira en |
+|---|---|
+| Datos generales, FAQ, beneficios, duración | `src/data/site.ts` |
+| Traducciones y textos de CA/EN | `src/data/locales.ts` |
+| Módulos, lecciones y programa | `src/data/curriculum.ts` |
+| Bloques "dirigido a" y ejemplos de especialidad | `src/data/audience-copy.ts`, `src/data/services.ts` |
+| Páginas legales | `src/pages/[locale]/[...slug].astro`, `src/data/legal.ts` |
+| Enlaces externos/Odoo | `src/lib/links.ts` |
+
+El import es directo: la web consume esos objetos; no hay que buscar textos escondidos en componentes más allá de casos puntuales (hero, cabecera).
+
+## Despliegue
+
+`dist/` es el único directorio que debe publicarse. Copia `.env.example` a `.env` y configura el dominio real antes de desplegar a producción; el preview queda `noindex` por defecto para evitar indexación accidental.
+
+La documentación detallada del proyecto está en `docs/`:
+
+- `docs/despliegue.md` — cómo desplegar
+- `docs/medicion-y-odoo.md` — integración con el backend Odoo
+- `docs/trazabilidad-contenido.md` — decisiones de contenido
+- `docs/fuentes-y-verificaciones.md` — fuentes de las estadísticas publicadas
+
+## Notas importantes
+
+- **Identificadores técnicos que se mantienen a propósito**: los UTMs (`landing_osint_abogados`, `osint_juridico`), el nombre de archivo del PDF y las URLs de `perinfor.odoo.com` provienen del enrolamiento original; cambiarlos rompería el seguimiento de campañas.
+- **La duración declarada del curso es de 30 h de carga formativa estimada**. En algunas páginas aparece además la nota «El tiempo configurado actualmente en la plataforma es de 15 h 10 min» — es el tiempo configurado en la plataforma de matrícula (Odoo), distinto de la estimación de estudio propio de la web.
+- No hay números de teléfono, formularios ni servicios externos; la única vía de contacto es el enlace a la ficha del curso en Odoo.
+
+## Licencia
+
+Contenido y materiales propiedad de iTR+. Uso interno / del proyecto.

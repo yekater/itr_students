@@ -1,0 +1,47 @@
+[
+  {
+    "file": "analytics.BfXTl2VD.js",
+    "bytes": 195,
+    "gzip": 164
+  },
+  {
+    "file": "Audience.Dq4bCDk-.js",
+    "bytes": 2641,
+    "gzip": 1375
+  },
+  {
+    "file": "client.C7WjD2Pw.js",
+    "bytes": 212848,
+    "gzip": 65805
+  },
+  {
+    "file": "CookieNotice.astro_astro_type_script_index_0_lang.Dg9uhQXp.js",
+    "bytes": 2240,
+    "gzip": 948
+  },
+  {
+    "file": "index.astro_astro_type_script_index_0_lang.BMAaz1iX.js",
+    "bytes": 79578,
+    "gzip": 30904
+  },
+  {
+    "file": "InvestigationDemo.BS2IZ09o.js",
+    "bytes": 23300,
+    "gzip": 7190
+  },
+  {
+    "file": "jsx-runtime.Cr1s1OSH.js",
+    "bytes": 424,
+    "gzip": 292
+  },
+  {
+    "file": "Planner.Jz5ispck.js",
+    "bytes": 2472,
+    "gzip": 1355
+  },
+  {
+    "file": "react.CvnImTBr.js",
+    "bytes": 7909,
+    "gzip": 3009
+  }
+]

@@ -1,0 +1,194 @@
+a: Saltar al contenido
+span: INVESTIGACIÓNY FORMACIÓN DIGITAL
+a: ES
+a: CA
+a: EN
+a: Solicita información del curso
+a: Contratar
+p: Curso de investigación digital para abogados · iTR+
+h1: Descubre cómo aportar pruebas que te ayudan a presentarlas en un juicio
+p: Aprende a buscar, contrastar y documentar fuentes abiertas con una metodología práctica y rigurosa.
+li: PDF por módulo
+li: Foro de consultas
+li: Acceso permanente
+a: Descargar programa ↓
+a: Prueba gratuita
+strong: 100 %
+span: online y con 4 clases prácticas con un profesor
+strong: 7 módulos
+span: de lo básico a lo avanzado
+strong: 38 lecciones
+span: con tests intermedios y evaluación final
+strong: 30 horas
+span: carga formativa estimada
+p: 01 / CONTEXTO
+h2: Cuatro áreasde investigación.
+p: En 2025, INCIBE registró más de 122.000 ciberincidentes en España.
+p: Especialízate en investigación digital aplicada al Derecho y refuerza tu perfil para acceder a nuevas oportunidades laborales en España.
+li: 01 /Investigación de sociedadesMapeo de estructuras, administradores y relaciones empresariales mediante fuentes públicas para preparar diligencias.
+li: 02 /Localización de informaciónBúsqueda avanzada de documentos, actas y prensa relevante en fuentes fiables para cada caso.
+li: 03 /Análisis de identidadesReconstrucción de huellas digitales y conexiones entre personas y empresas en internet, garantizando el respeto a la privacidad.
+li: 04 /Documentación probatoriaGeneración de informes estructurados para estrategias jurídicas, clasificando fuentes, indicios y pruebas.
+a: Descripción y Método didáctico
+a: Contenido
+a: Dirigido a
+a: Certificado
+a: Salidas laborales
+a: FAQ
+p: 02 / DESCRIPCIÓN Y MÉTODO DIDÁCTICO
+h2: De la primera búsquedaal informe documentado.
+p: Descubre el potencial de la investigación digital y aprende técnicas de investigación para abogados. Búsqueda avanzada, investigación de sociedades, herramientas digitales e informes con enfoque práctico y jurídico.
+a: Metodología de fuentes abiertasEnfoque práctico, legal y reproducible para la investigación digital.Búsquedas avanzadasTécnicas de Google y operadores avanzados para resultados precisos.Investigación en redes socialesExtracción y análisis de perfiles públicos, hilos y conexiones relevantes, con accesos autorizados.Investigación societariaInvestigación de sociedades mercantiles: fuentes mercantiles, registros y análisis de relaciones empresariales.Seguridad y Deep WebBuenas prácticas para proteger al investigador y preservar pruebas. Deep Web no equivale a actividad delictiva ni implica acceso a contenido privado.Herramientas y geolocalizaciónHerramientas de investigación digital para profesionales jurídicos: uso práctico de herramientas open-source y localización geográfica.03 / RIGOR EN EL MÉTODO, FLEXIBILIDAD EN TU AGENDARigor en el método.Flexibilidad en tu agenda.Estudio autónomo, materiales descargables y un foro para tus dudas. Aprende a tu ritmo, trabaja las actividades y realiza los cuestionarios y la evaluación final.Modalidad100 % online con 4 clases prácticas con un profesorCada módulo incluye un PDF con el material de estudio, enlaces a vídeos y recursos complementarios para trabajar los contenidos.Dedicación30 horas de carga estimadaCarga formativa estimada de 30 horas, según el programa facilitado.El tiempo configurado actualmente en la plataforma es de 15 h 10 min; consulta la dedicación y planificación vigentes.Estructura7 módulos y 38 leccionesCon actividades, foro de consulta y evaluación final.RequisitosSin conocimientos previosEnfoque práctico y legal. Puedes plantear tus preguntas al creador y al mentor del curso en el foro.Haz espacio para aprender.Horas de estudio por semana6 semanas de dedicación orientativa.Estimación sobre 30 horas. No es un calendario contratado. Tu elección no se guarda ni se envía.Sin plazos. Con acceso permanente.No hay una fecha límite para completar la formación. Tú decides cuándo estudiar y cuánto tiempo dedicar a cada módulo.Los materiales están disponibles para siempre, también después de finalizar el curso. Conservas el acceso online mediante tu usuario y contraseña en la plataforma iTR+.Contacto
+a: Información completa y condiciones del curso
+p: 05 / CONTENIDO DEL CURSO
+h2: Tu programa de investigación.
+p: 7 módulos estructurados para progresar desde lo básico a lo avanzado. 38 lecciones prácticas con recursos y ejercicios guiados.
+button: Expandir todo
+button: Contraer todo
+summary: 01Introducción a la investigación digital: qué es y para qué sirve6 lecciones+
+li: 1.1 ¿Qué es la investigación digital?
+li: 1.2 Ética y legalidad
+li: 1.3 Mentalidad y metodología
+li: 1.4 Tipos de fuentes
+li: 1.5 Seguridad y OpSec
+li: 1.6 El entorno de trabajo
+summary: 02El mundo Google6 lecciones+
+li: 2.1 Google como fuente
+li: 2.2 Mejorar búsqueda
+li: 2.3 Google Dorks
+li: 2.4 Información expuesta
+li: 2.5 Imágenes con Google
+li: 2.6 Alternativas: motores de búsqueda
+summary: 03Las redes sociales: un mar de datos4 lecciones+
+li: 3.1 Redes sociales como fuente
+li: 3.2 Información personal
+li: 3.3 Identidad digital
+li: 3.4 Investigación manual
+summary: 04¿Qué información disponen de nosotros?5 lecciones+
+li: 4.1 El rastro administrativo: identidad y localización
+li: 4.2 Investigación de sociedades mercantiles
+li: 4.3 Patrimonio móvil y propiedad
+li: 4.4 Portales de transparencia y datos abiertos
+li: 4.5 Cooperación y canales judiciales/policiales
+summary: 05DeepWeb: la parte oscura de Internet6 lecciones+
+li: 5.1 Conceptos básicos
+li: 5.2 El origen y la arquitectura de la invisibilidad
+li: 5.3 Clasificación profesional I: la web opaca y la web privada
+li: 5.4 Clasificación profesional II: redes superpuestas
+li: 5.5 Desmitificación: realidad frente a ficción sensacionalista
+li: 5.6 Aplicaciones en la investigación digital y seguridad del investigador
+summary: 06Herramientas útiles6 lecciones+
+li: 6.1 Conceptos básicos del ecosistema de herramientas
+li: 6.2 Tipos de herramientas: taxonomía técnica
+li: 6.3 Cómo encontrar herramientas: el arte de la curación
+li: 6.4 Herramientas y su uso I: investigación de identidad
+li: 6.5 Herramientas y su uso II: infraestructura y geolocalización
+li: 6.6 Seguridad, ética y mantenimiento de la caja de herramientas
+summary: 07Cómo hacer un informe forense5 lecciones+
+li: 7.1 Generación de informes: fase de difusión
+li: 7.2 Estructura básica de un informe de investigación
+li: 7.3 Evidencias y datos de investigación: recogida y conservación de la información
+li: 7.4 Redacción y presentación de resultados
+li: 7.5 Recursos y modelos de referencia
+strong: + Evaluación final
+p: Test final que valida los conocimientos adquiridos. Es adicional a las 38 lecciones, no un octavo módulo formativo.
+a: Descargar programa completo ↓
+p: COMPETENCIAS
+h3: Conoce las competencias y su aplicación
+a: Formación en técnicas de investigación digitalFormación online de carga estimada de 30 horas dirigida a abogados, profesionales del derecho digital e investigadores. Aprende a buscar y analizar información, investigar personas y empresas, localizar en redes sociales, utilizar herramientas especializadas y analizar y documentar. El tiempo configurado actualmente en la plataforma es de 15 h 10 min; consulta la dedicación y planificación vigentes.Investigación de empresas y sociedades en fuentes abiertasPara abogados mercantiles, despachos jurídicos y consultores antifraude: consulta de registros públicos, directorios empresariales y herramientas digitales para recopilar y analizar datos.Investigación de identidades digitales y redes socialesBúsquedas avanzadas, análisis de perfiles públicos y verificación de fuentes. Una metodología estructurada que prioriza la fiabilidad y el respeto a la privacidad.Búsqueda avanzada de información en internetOperadores, localización de documentos y selección de fuentes fiables para profesionales jurídicos, consultores e investigadores.Elaboración y documentación de informes de investigaciónRecopilación de evidencias digitales e informes claros, estructurados y trazables, sin garantizar por sí mismos su validez judicial.06 / DIRIGIDO A¿A quién va dirigido?Dirigido a abogados y profesionales del derecho interesados en la investigación digital.01Litigación civil y mercantilMejora la prueba documental y la diligencia investigadora en pleitos.02Conflictos societariosAnaliza estructuras societarias y movimientos patrimoniales.03Derecho digital y privacidadLocaliza fuentes públicas preservando cumplimiento normativo.04Penal económicoApoya diligencias preliminares con análisis de evidencias abiertas.UN EJEMPLO EN TU ESPECIALIDADLocaliza un documento público y registra su procedencia antes de incorporarlo al análisis.Ejemplo didáctico, no asesoramiento sobre un caso real.Selecciona tu especialidad para explorar una aplicación.También para quienes amplían su mirada digital+Investigación digital para reforzar tu práctica jurídica.Aprende a localizar, contrastar y documentar información pública relevante para tus asuntos. Incorpora una metodología de investigación en fuentes abiertas que te ayude a preparar diligencias, analizar relaciones entre personas y empresas y fundamentar mejor tu estrategia jurídica.Una formación 100 % online dirigida a abogados, pasantes y equipos jurídicos que quieren incorporar nuevas herramientas a su trabajo diario. Combina el estudio a tu ritmo con 4 clases prácticas con un profesor para aplicar las técnicas de investigación digital a situaciones del ámbito jurídico.Trabaja con documentos, registros públicos, sitios corporativos, prensa y otras fuentes abiertas. Aprende a evaluar la fiabilidad de la información, distinguir indicios de conclusiones y organizar tus hallazgos en informes claros, identificando sus fuentes y contexto.Abogados y pasantes de despachos pequeños y medianos: amplía tus recursos para investigar asuntos, contrastar información y preparar expedientes con una metodología ordenada y reproducible.Abogados del ámbito civil y mercantil: analiza estructuras societarias, administradores y relaciones empresariales para comprender mejor las conexiones relevantes para cada caso.Abogados penalistas y profesionales que trabajan en asuntos de fraude: aprende a reconstruir cronologías, contrastar identidades y documentar conexiones mediante información pública.Equipos jurídicos internos y especialistas en compliance: mejora la revisión de información corporativa, la identificación de riesgos reputacionales y la documentación de hallazgos.Abogados en formación y estudiantes de Derecho: desarrolla competencias prácticas para buscar, analizar y presentar información digital con criterio jurídico y respeto a la privacidad.07 / CERTIFICACIÓNDoble Certificación Oficial: iTR+ y COEINFImpulsa tu carrera IT con una titulación de alto impacto avalada por iTR+ y el Col·legi Oficial d’Enginyeria en Informàtica de Catalunya (COEINF). Demuestra ante los reclutadores tu rigor técnico y excelencia profesional con un sello institucional que te posiciona por encima de la competencia. ¡Destaca en el sector tecnológico!Visitar COEINF ↗
+p: 08 / CAMINOS PROFESIONALES
+h2: Salidas laborales.
+p: La práctica de la investigación en fuentes abiertas se aplica hoy en despachos, consultoras, compliance y perfiles híbridos derecho-tecnología. Las cifras siguientes describen el contexto del sector, con su fuente, territorio y límite: no constituyen una promesa de empleo ni de ingresos.
+p: 01 / 0402 / 0403 / 0404 / 04España · dato observadomás de 122.000 ciberincidentes gestionados en EspañaEspaña · Año 2025 · unidad: incidentes de ciberseguridad
+p: Contexto de riesgos digitales que atraviesan despachos y empresas: no cuenta empleos ni contrataciones.
+a: Fuente: INCIBE — «INCIBE detectó más de 122.000 incidentes de ciberseguridad en 2025»
+a: Mundo (55 economías) · encuesta39 % de habilidades actuales se transformará o quedará desactualizada entre 2025 y 2030Mundo (55 economías) · Perspectiva 2025-2030 · unidad: porcentaje de habilidadesEncuesta a más de mil empleadores: transforma el contexto de competencias profesionales; no mide inserción laboral de abogados ni resultados de este curso.Fuente: World Economic Forum — The Future of Jobs Report 2025
+a: Estados Unidos · proyección+21 % crecimiento de empleo en analistas de seguridad de la informaciónEstados Unidos · Proyección 2025-2035 · unidad: crecimiento de una ocupación técnicaProyección estadounidense para una ocupación técnica: no es una cifra mundial ni de abogados con esta formación.Fuente: U.S. Bureau of Labor Statistics — Information Security Analysts, Occupational Outlook Handbook
+a: Reino Unido · dato observado34.932 anuncios de puestos cuya función principal es la ciberseguridadReino Unido · Enero-diciembre de 2025 (informe publicado en 2026) · unidad: anuncios online analizados con datos de LightcastAnuncios publicados en un periodo: no equivalen a contrataciones ni a oportunidades exclusivamente jurídicas.Fuente: Gobierno británico / DSIT — Cyber security skills in the UK labour market 2026
+h3: Salidas cualitativas: roles donde aplicas lo aprendido
+li: 01Litigación y prueba documentalLocaliza y contrasta información pública antes de incorporarla a tu estrategia de defensa.
+li: 02Due diligence societariaAnaliza sociedades, administradores y movimientos patrimoniales con fuentes mercantiles abiertas.
+li: 03Compliance y antifraudeApoya investigaciones internas y diligencias preliminares con indicios documentados.
+li: 04Consultoría forense y legal techColabora con consultoras, despachos y plataformas tecnológicas jurídicas.
+li: 05Investigación digital profesionalComplementa tu habilitación como detective privado o perito con técnicas documentadas.
+p: 09 / ANTES DE EMPEZAR
+h2: Preguntasfrecuentes.
+p: La información pública exige un uso responsable: finalidad legítima, respeto a la privacidad, límites de acceso y documentación rigurosa.
+summary: ¿Necesito conocimientos previos?+
+p: No. El curso parte de un nivel básico y sube a prácticas avanzadas.
+summary: ¿Cuál es la duración efectiva?+
+p: Carga formativa estimada de 30 horas, según el programa facilitado. El tiempo configurado actualmente en la plataforma es de 15 h 10 min; consulta la dedicación y planificación vigentes. Esta carga es orientativa, no un plazo de finalización. No hay una fecha límite para completar la formación. Tú decides cuándo estudiar y cuánto tiempo dedicar a cada módulo.
+summary: ¿La certificación es oficial?+
+p: Sí. Los alumnos reciben doble certificación del Col·legi Oficial d’Enginyeria en Informàtica de Catalunya (COEINF) y de iTR+.
+summary: ¿Cómo aplicar lo aprendido?+
+p: Plantillas y formatos para integrar hallazgos en informes jurídicos. La obtención y aportación de cada evidencia exige valorar sus límites legales y técnicos.
+summary: ¿Cómo se desarrolla la formación?+
+p: Formación 100 % online y de estudio autónomo: avanzas por tu cuenta y a tu ritmo. Cada módulo incluye un PDF con el material de estudio, enlaces a vídeos y recursos complementarios para trabajar los contenidos. Estudias los siete módulos, trabajas las actividades y realizas los cuestionarios y la evaluación final. Tendrás acceso a un foro donde podrás plantear tus preguntas al creador y al mentor del curso.
+summary: ¿Qué incluye la formación?+
+p: Cada módulo incluye un PDF con el material de estudio, enlaces a vídeos y recursos complementarios para trabajar los contenidos. Incluye actividades, cuestionarios, evaluación final, soporte técnico y el foro de consulta. La formación contempla un certificado final en las condiciones indicadas.
+summary: ¿Puedo preguntar al creador y al mentor del curso?+
+p: Sí. Tendrás acceso a un foro donde podrás plantear tus preguntas al creador y al mentor del curso. El estudio autónomo no significa estudiar sin un lugar donde resolver dudas: puedes utilizar el foro para consultar los contenidos y las actividades.
+summary: ¿Es compatible con trabajar a jornada completa?+
+p: Sí. Puedes compaginar el curso con una jornada laboral completa porque el aprendizaje es autónomo, sin horarios de clase obligatorios ni plazo de finalización. Los materiales están disponibles para siempre.
+summary: ¿Me quedaré con los materiales después de terminar?+
+p: Sí. Los materiales están disponibles para siempre, también después de finalizar el curso. Conservas el acceso online mediante tu usuario y contraseña en la plataforma iTR+. Puedes volver a consultar los PDF, los enlaces a vídeos y los recursos del curso cuando los necesites.
+summary: ¿Para quién es este curso de investigación digital para abogados?+
+p: Principalmente para abogados y pasantes de despachos pequeños y medianos. También resulta de interés para estudiantes, investigadores privados habilitados, consultores antifraude, profesionales digitales y peritos informáticos. No confiere habilitación profesional adicional.
+summary: ¿Dónde consulto las condiciones y el acceso?+
+p: La ficha de iTR+ recoge la información completa y las condiciones vigentes. El acceso a la plataforma y la matrícula pueden requerir identificación y pasos adicionales.
+summary: ¿Cómo puede ayudarme el curso a encontrar empleo o progresar profesionalmente?+
+p: Puede ayudarte a mostrar una especialización en búsqueda, contraste y documentación de información pública dentro de tu perfil jurídico. Estas competencias son aplicables a litigación, investigación societaria, prevención del fraude, compliance y derecho digital.
+p: Su valor se entiende mejor cuando puedes explicar qué sabes hacer y mostrar un ejemplo de trabajo con fuentes trazables. El certificado complementa tu formación y experiencia: no garantiza contratación, ascenso ni una mejora salarial y no sustituye una habilitación profesional.
+summary: ¿Cómo incorporo el curso y el certificado a mi CV de abogado?+
+p: Añádelo en Formación complementaria como «Acreditación Técnico Especialista en Análisis Forense en la Web», con doble certificación del Col·legi Oficial d’Enginyeria en Informàtica de Catalunya (COEINF) y de iTR+. Destaca las competencias y tareas prácticas que has completado durante el curso.
+summary: ¿Cómo actualizo mi LinkedIn: titular, extracto, aptitudes y palabras clave?+
+p: Mantén tu especialidad jurídica en primer plano y añade la investigación en fuentes abiertas como competencia complementaria. Elige un titular acorde con tu experiencia y tu situación profesional. En Acerca de, explica el tipo de información que sabes localizar, cómo la contrastas y cómo documentas sus límites.
+p: Cuando lo obtengas, registra el certificado en Licencias y certificaciones con su nombre y emisor exactos. Añade una fecha y un identificador solo si figuran en el documento; enlaza a una verificación únicamente si existe. Puedes incluir un proyecto simulado en Destacado y compartir lo aprendido sin revelar datos de casos reales.
+h3: Aptitudes y palabras clave que puedes añadir si las has practicado
+li: Investigación en fuentes abiertas
+li: Inteligencia de fuentes abiertas
+li: Búsqueda avanzada de información pública
+li: Verificación de fuentes
+li: Investigación societaria
+li: Análisis de huella digital
+li: Investigación en redes sociales
+li: Elaboración de informes de fuentes abiertas
+p: Utiliza solo aptitudes que puedas demostrar; no añadas herramientas ni experiencia que no tengas.
+summary: ¿Qué cifras recientes hay sobre la demanda y qué significan para este curso?+
+p: Estos datos aportan contexto del mercado y de los riesgos digitales, con su territorio y periodo declarados. No miden el empleo de abogados con formación en investigación digital en España ni los resultados del curso iTR+.
+a: +21 % crecimiento de empleo en analistas de seguridad de la informaciónEstados Unidos · Proyección 2025-2035 · crecimiento de una ocupación técnicaProyección estadounidense para una ocupación técnica: no es una cifra mundial ni de abogados con esta formación.Fuente: U.S. Bureau of Labor Statistics — Information Security Analysts, Occupational Outlook Handbook
+a: 34.932 anuncios de puestos cuya función principal es la ciberseguridadReino Unido · Enero-diciembre de 2025 (informe publicado en 2026) · anuncios online analizados con datos de LightcastAnuncios publicados en un periodo: no equivalen a contrataciones ni a oportunidades exclusivamente jurídicas.Fuente: Gobierno británico / DSIT — Cyber security skills in the UK labour market 2026
+p: Fuentes consultadas el 25 de octubre de 2026. Las proyecciones y los anuncios publicados en un periodo no son un contador de ofertas disponibles en este momento.
+p: No disponemos de una cifra verificada que aísle las vacantes de abogados con formación en investigación digital en España ni una tasa de contratación de alumnos de este curso. Por eso no extrapolamos estos datos a una promesa de empleo.
+summary: ¿Qué aporta el certificado en un proceso de selección?+
+p: El BLS señala que, en puestos de analista de seguridad de la información, los empleadores pueden preferir candidatos con una certificación profesional. El informe británico también describe la formación especializada y las certificaciones como vías para demostrar competencias. Son observaciones generales del sector, no una evaluación del certificado de iTR+.
+p: En tu CV y LinkedIn, utiliza el certificado para explicar qué has estudiado y acompáñalo de competencias y ejemplos que puedas demostrar. La selección depende también de tu experiencia, tu perfil jurídico y los requisitos de cada puesto.
+li: BLS: requisitos y certificación profesional para analistas de seguridad
+li: Gobierno británico / DSIT 2026: formación y certificaciones, apartado 5.3
+a: Acceder al curso en iTR+
+p: 10 / PRUEBA EL MÉTODO
+h2: Mapa de fuentes.Un caso para practicar.
+p: Una demostración breve (2–4 minutos, sin registro): elige una ruta de búsqueda, lee el documento, comprueba su procedencia y documenta lo que las fuentes permiten afirmar. Datos simulados; no se realizan búsquedas externas.
+a: LABORATORIO · EXPEDIENTE 001Datos simuladosUna relación que conviene verificarUn despacho prepara una revisión preliminar. Dos sociedades aparecen relacionadas en varios documentos públicos. Tu tarea es comprobar qué puede afirmarse y qué necesita más verificación.Pregunta de investigación: ¿Los documentos disponibles permiten afirmar que Sociedad A controla Sociedad B?ETAPA 01 · LOCALIZARElige una rutaPaso 1 de 4 · LocalizarAbre el registro mercantil y añade el dato que encuentres al expediente.Haz clic en las fuentes. No necesitas arrastrar elementos.− Fuentes mercantilesSociedades y cargos en registros simulados.F01 Ficha mercantil simuladaAbrir documento F01+ Sitios corporativosComunicados de las propias empresas.+ Directorios y perfiles públicosAgregadores y datos autodeclarados.Abre una categoría y selecciona un documento para consultar su contenido.Añade primero una fuente al expedienteContinuar: contrastar fuentesETAPA 02 · CONTRASTARBusca una segunda fuenteBusca una segunda fuente sobre la relación entre las dos sociedades y revisa de dónde procede cada dato. Abre el comunicado F02 y añade su extracto; después revisa el directorio F03 y responde.F02Comunicado corporativo simuladoComunicado de empresa simulado · Sociedad B · 02.09.2026Origen: Comunicado publicado por la propia Sociedad B. Cadena de origen: sala-prensa-b.Sociedad B anuncia un proyecto de colaboración con Sociedad A para el desarrollo de servicios conjuntos.No describe participaciones, control ni vínculos societarios entre las compañías.Es la versión de la propia empresa que lo emite.Añadir al expedienteF03Directorio empresarial simuladoDirectorio público simulado · Directorio simulado · 03.09.2026Origen: Reproduce los datos de F01 y lo cita como fuente (F01 · 01.09.2026). Misma cadena de origen: registro-central.Persona 01 — administrador de Sociedad A. Fuente citada: Ficha mercantil (F01), 01.09.2026.Reproduce el contenido de F01: otra página, no una confirmación independiente del mismo hecho.Documento de lectura: sirve para revisar la procedencia, no añade un dato nuevo al expediente.F04Perfil profesional simuladoPerfil público simulado · Persona 01 · 15.02.2024Origen: Información introducida por la propia persona. Cadena de origen: autodeclaración.Persona 01 declara en su perfil haber colaborado con Sociedad B en proyectos de asesoría (2023–2024).Dato autodeclarado por el propio usuario del perfil, sin verificación externa.Con fecha 15.02.2024: no acredita la situación actual en 2026.Añadir al expediente¿F03 aporta una confirmación independiente de F01? Sí, porque es otra página No, reproduce la misma fuenteVolver al paso anteriorCompleta el contraste: añade los extractos de F01 y F02 antes de concluirContinuar: concluirETAPA 03 · CONCLUIRElige la conclusión respaldada¿Qué conclusión está respaldada por los documentos que has consultado? Sociedad A controla Sociedad B. Las sociedades no tienen ninguna relación. Se ha anunciado una colaboración, pero la documentación no permite confirmar una relación de control.Volver al paso anterior¿Qué conclusión está respaldada por los documentos que has consultado?Continuar: documentarETAPA 04 · DOCUMENTARDocumenta tus hallazgosCuando las comprobaciones estén hechas, el miniinforme se genera con lo que has hecho, no con lo que la demo esperaba.Miniinforme pendientePara generar el informe completa estos pasos:Añade al expediente la fuente de cargo de Persona 01 (F01).Añade al expediente el comunicado de colaboración (F02).Revisa la procedencia de F03 y responde a la pregunta de origen.Elige la conclusión respaldada por los documentos.Volver al paso anteriorReiniciar casoEl gráfico se completa automáticamente al añadir evidencias.Lista textual de relaciones:Todavía sin relaciones añadidas al expediente.ExpedienteEl expediente está vacío: añade extractos desde las fichas de las fuentes.Sobre este ejercicioCaso simulado con cuatro documentos ficticios (F01–F04): una ficha mercantil, un comunicado corporativo, un directorio que reproduce la ficha y un perfil autodeclarado. El método enseñado: localizar una fuente identificada, contrastar su procedencia, concluir solo lo respaldado por los documentos y documentar los límites de la comprobación. Activa JavaScript para realizar el ejercicio interactivo.TU SIGUIENTE PASOAmplía tus herramientasde investigación jurídica.Da un paso más en tu investigación jurídica. Descubre nuevas posibilidades para localizar y analizar información pública y amplía tus conocimientos sobre investigación digital.Consulta el programa, la dedicación y las condiciones de la formación.Contacto
+a: Quiero más información
+p: Formación especializada en investigacióndigital mediante fuentes abiertas.
+a: Aviso legal
+a: Política de privacidad
+a: Política de cookies
+a: Accesibilidad
+button: Configurar cookies
+a: Contactar con iTR+
+p: Sin analítica ni cookies de marketing activas sin tu consentimiento.© 2026 iTR+
+a: Solicitar información
+a: Este sitio solo usa almacenamiento estrictamente necesario para funcionar y recordar tus preferencias. Política de cookies
+button: Aceptar todas
+button: Rechazar no esenciales
+button: Configurar preferencias
+h2: Preferencias de cookies
+p: Elige qué funciones no esenciales se pueden activar en este sitio.
+label: Técnicas (necesarias)
+label: Analítica
+label: Medios externos
+p: Hoy este sitio no tiene ningún servicio opcional configurado.
+button: Guardar preferencias
+button: Cerrar

@@ -1,0 +1,66 @@
+---
+// Bloque de salidas: cuatro escenas editoriales con imagen fija al hacer scroll,
+// cifras del registro central (src/data/employment-evidence.ts) con territorio,
+// periodo, unidad y límite declarados, y cinco salidas cualitativas abiertas.
+import {Picture} from 'astro:assets';
+import {employmentEvidence as evidence} from '../data/employment-evidence';
+import careersCybersecurity from '../assets/careers/careers-cybersecurity.jpg';
+import careersGlobal from '../assets/careers/careers-global.jpg';
+import careersLegalTech from '../assets/careers/careers-legal-tech.jpg';
+import careersProfessional from '../assets/careers/careers-professional.jpg';
+
+const kindLabels = {observed: 'dato observado', projection: 'proyección', survey: 'encuesta'} as const;
+const {locale='es'}=Astro.props;
+const ca=locale==='ca', en=locale==='en';
+const copy=ca ? {eyebrow:'08 / CAMINS PROFESSIONALS',title:'Sortides professionals.',intro:'La investigació en fonts obertes s’aplica avui en consultores, compliance, mitjans i perfils híbrids de comunicació i tecnologia. Les xifres descriuen el context del sector, amb la seva font, territori i límit: no constitueixen una promesa d’ocupació ni d’ingressos.',roles:'Sortides qualitatives: rols on apliques el que has après'} : en ? {eyebrow:'08 / CAREER PATHS',title:'Career paths.',intro:'Open-source investigation is used today in consultancies, compliance, media and hybrid communication-technology roles. The figures below describe the sector context, with their source, territory and limit: they are not a promise of employment or income.',roles:'Qualitative paths: roles where you apply what you have learned'} : {eyebrow:'08 / CAMINOS PROFESIONALES',title:'Salidas laborales.',intro:'La investigación en fuentes abiertas se aplica hoy en consultoras, compliance, medios y perfiles híbridos de comunicación y tecnología. Las cifras siguientes describen el contexto del sector, con su fuente, territorio y límite: no constituyen una promesa de empleo ni de ingresos.',roles:'Salidas cualitativas: roles donde aplicas lo aprendido'};
+const scenes = [
+  {src: careersCybersecurity, alt: '', position: 'itr-pos-lock'},
+  {src: careersGlobal, alt: '', position: 'itr-pos-map'},
+  {src: careersLegalTech, alt: '', position: 'itr-pos-scales'},
+  {src: careersProfessional, alt: '', position: 'itr-pos-hand'},
+] as const;
+const salidas = [
+  ['Empleabilidad en consultoría y compliance','Añade una especialización en fuentes abiertas que consultoras, agencias y empresas valoran en sus procesos de selección.'],
+  ['Due diligence e investigación societaria','Analiza sociedades, administradores y relaciones empresariales con fuentes mercantiles abiertas.'],
+  ['Verificación y análisis de contenido','Aplica tu criterio en agencias, medios y plataformas que necesitan contrastar información pública.'],
+  ['Prevención del fraude','Apoya investigación de riesgos e indicios de fraude con documentación meticulosa en fuentes abiertas.'],
+  ['Investigación digital profesional','Complementa tu formación con técnicas documentadas, y aplícalas en comunicaciones, ciberseguridad o informática forense.'],
+] as const;
+---
+<section id="salidas-laborales" class="section surface itr-careers">
+  <div class="container">
+    <div class="section-head"><p class="eyebrow">{copy.eyebrow}</p><h2>{copy.title}</h2><p>{copy.intro}</p></div>
+    <div class="itr-careers-layout">
+      <div class="itr-careers-stage">
+        {scenes.map((scene, i) => (
+          <figure class:list={['itr-careers-scene', scene.position, {'is-active': i === 0}]} data-scene={i}>
+            <Picture src={scene.src} alt={scene.alt} widths={[560, 840, 1120]} sizes="(min-width: 1024px) 46vw, 92vw" formats={['webp']} loading={i === 0 ? 'eager' : 'lazy'} decoding="async"/>
+            <span class="itr-careers-counter" aria-hidden="true">0{i + 1} / 04</span>
+          </figure>
+        ))}
+      </div>
+      <div class="itr-careers-articles">
+        {evidence.metrics.map((metric, i) => (
+          <article class="salida" data-scene={i}>
+            <figure class:list={['itr-careers-inline', scenes[i].position]}>
+              <Picture src={scenes[i].src} alt="" widths={[560, 840]} sizes="92vw" formats={['webp']} loading={i === 0 ? 'eager' : 'lazy'} decoding="async"/>
+            </figure>
+            <span class="salida-region">{metric.geography} · {kindLabels[metric.kind]}</span>
+            <h3><span>{metric.displayValue}</span> {metric.claim}</h3>
+            <p class="salida-scope">{metric.geography} · {metric.period} · unidad: {metric.unit}</p>
+            <p>{metric.scopeNote}</p>
+            <a href={metric.sourceUrl}>Fuente: {metric.sourceName}</a>
+          </article>
+        ))}
+      </div>
+    </div>
+    <div class="salidas-roles itr-careers-roles">
+      <h3>{copy.roles}</h3>
+      <ul>{salidas.map(([title, description], i) => <li><span class="itr-careers-num" aria-hidden="true">0{i + 1}</span><div><h3>{title}</h3><p>{description}</p></div></li>)}</ul>
+    </div>
+  </div>
+</section>
+<script>
+  import {initCareersScroll} from '../lib/careers-scroll';
+  initCareersScroll();
+</script>

@@ -1,0 +1,106 @@
+﻿---
+import '../../styles/global.css';
+import '@fontsource/inter/latin-400.css';
+import '@fontsource/inter/latin-500.css';
+import '@fontsource/ibm-plex-sans/latin-400.css';
+import '@fontsource/ibm-plex-sans/latin-500.css';
+import CookieNotice from '../../components/CookieNotice.astro';
+import BrandLogo from '../../components/BrandLogo.astro';
+import {destination} from '../../lib/links';
+import {privacyPolicy} from '../../data/privacy-policy';
+
+const pages = ['aviso-legal','politica-de-privacidad','politica-de-cookies','accesibilidad'];
+export function getStaticPaths() { const legalPages = ['aviso-legal','politica-de-privacidad','politica-de-cookies','accesibilidad']; return ['ca','en'].flatMap(locale => legalPages.map(slug => ({params:{locale,slug}}))); }
+const locale = Astro.params.locale as 'ca'|'en';
+const slug = Astro.params.slug!;
+const ca = locale === 'ca';
+const titles = ca ? {'aviso-legal':'Avís legal','politica-de-privacidad':'Política de privacitat','politica-de-cookies':'Política de galetes','accesibilidad':'Accessibilitat'} : {'aviso-legal':'Legal notice','politica-de-privacidad':'Privacy policy','politica-de-cookies':'Cookie policy','accesibilidad':'Accessibility'};
+const title = titles[slug as keyof typeof titles];
+const links = pages.map(page => `/${locale}/${page}/`);
+const labels = ca ? ['Avís legal','Política de privacitat','Política de galetes','Accessibilitat'] : ['Legal notice','Privacy policy','Cookie policy','Accessibility'];
+const descriptions = ca ? {
+  'aviso-legal':'Avís legal de Perinfor S.L. (iTR+) a la Recerca de Barcelona per al Curs d’investigació digital per a estudiants: identitat, condicions d’ús, responsabilitat i protecció de dades.',
+  'politica-de-privacidad':'Política de privacitat de Perinfor S.L. (iTR+) per a aquesta web del curs d’investigació digital per a estudiants: responsable, finalitats, bases jurídiques, conservació, destinataris, drets i seguretat.',
+  'politica-de-cookies':'Política de galetes real d’aquest lloc: únic emmagatzematge local de preferències, sense rastrejadors de tercers, segons la guia de l’AEPD.',
+  'accesibilidad':'Estat d’accessibilitat d’aquesta web d’iTR+: objectiu WCAG 2.2 AA i comunicació d’incidències.',
+} : {
+  'aviso-legal':'Legal notice of Perinfor S.L. (iTR+) at the Barcelona registry for this digital investigation course for students: identity, terms of use, liability and data protection.',
+  'politica-de-privacidad':'Privacy policy of Perinfor S.L. (iTR+) for this digital investigation course website: controller, purposes, legal bases, retention, recipients, rights and security.',
+  'politica-de-cookies':'This site’s actual cookie policy: solely local preference storage, no third-party trackers, following the Spanish AEPD guidance.',
+  'accesibilidad':'Accessibility status of this iTR+ website: WCAG 2.2 AA objective and how to report issues.',
+};
+const description = descriptions[slug as keyof typeof descriptions] ?? (ca ? 'Descripció del document legal.' : 'Description of the legal document.');
+type Block = {heading:string;paras:string[];ul?:string[];dl?:Record<string,string>};
+const inlineLinks = ca ? {
+  privacy:{href:`/ca/politica-de-privacidad/`,text:'Política de privacitat'},
+  cookies:{href:`/ca/politica-de-cookies/`,text:'Política de galetes'},
+} : {
+  privacy:{href:`/en/politica-de-privacidad/`,text:'Privacy policy'},
+  cookies:{href:`/en/politica-de-cookies/`,text:'Cookie policy'},
+};
+const CORPORATE_URL = 'https://perinfor.odoo.com';
+const COURSE_URL = 'https://perinfor.odoo.com/slides/acreditacion-tecnico-especialista-en-analisis-forense-en-la-web-10';
+const legalNotice = (ca ? [
+  {heading:'1. Identificació del titular',paras:['D’acord amb l’article 10 de la Llei 34/2002, d’11 de juliol, de Serveis de la Societat de la Informació i de Comerç Electrònic (LSSI-CE), es facilita la informació següent:'],dl:{'Titular del lloc i prestador del servei':'Jose Manuel Rodriguez Sanchez','Marca utilitzada en aquest lloc':'iTR+.','DNI':'52397964P.','Domicili social':'Carrer de Ferreria, 28bis, local, 08014, Barcelona, Espanya.','Dades registrals':'No inscrita en el Registre Mercantil de Barcelona.','Correu electrònic de contacte':'[[mailto:info@perinfor.com|info@perinfor.com]]','Telèfon de contacte':'[[tel:+34619223158|+34 619 22 31 58]]','Lloc web':'abogados.itrplus.com.'}},
+  {heading:'2. Objecte i accés',paras:['Aquest lloc presenta el «Curs d’investigació digital per a estudiants», vinculat al producte «Acreditación Técnico Especialista en Análisis Forense en la Web», i facilita informació sobre els seus continguts, metodologia i accés.','La navegació per aquesta pàgina és gratuïta i no requereix registre. La matrícula i l’accés a la formació es fan mitjançant la plataforma corporativa i poden requerir identificació i l’acceptació de les condicions de contractació corresponents.']},
+  {heading:'3. Informació i contractació del curs',paras:['Els serveis corporatius relacionats amb aquesta pàgina són:'],ul:['[['+CORPORATE_URL+'|Web corporativa d’iTR+]]: informació i sol·licituds.','[['+COURSE_URL+'|Fitxa i plataforma del curs]]: accés a la formació i condicions de contractació.'],postParas:['El preu i les condicions econòmiques es consulten a la plataforma de contractació. Abans d’assumir una obligació de pagament, la persona interessada haurà de disposar de la informació precontractual exigible, inclòs el preu total amb els impostos aplicables, les condicions de pagament i prestació del servei i, si escau, el dret de desistiment i les seves condicions d’exercici.','Aquest avís no substitueix les condicions de contractació ni limita els drets legalment reconeguts a qui tingui la condició de consumidors. La informació publicitària exigible conforme a la normativa aplicable conservarà la seva eficàcia encara que no es reprodueixi al contracte.']},
+  {heading:'4. Condicions d’ús',paras:['L’usuari haurà d’utilitzar el lloc i els seus continguts de manera lícita, respectant els drets d’altres persones. Les tècniques d’investigació es presenten per a finalitats legítimes, amb respecte a la privacitat, a la protecció de dades personals i als límits d’accés a la informació.','No es permet utilitzar els recursos del lloc per fer accessos no autoritzats, assetjament, suplantació d’identitat o tractaments il·lícits de dades personals, ni per danyar o alterar el funcionament del servei.','Que una informació sigui públicament accessible no autoritza qualsevol ús posterior: el tractament de dades personals requereix una base jurídica adequada i el compliment de la normativa aplicable.']},
+  {heading:'5. Continguts i responsabilitat',paras:['Les demostracions i els exercicis d’aquesta pàgina utilitzen dades simulades amb fins didàctics. Els seus continguts són informatius i formatius i no constitueixen assessorament jurídic sobre un assumpte concret.','Si detectes errors, incidències tècniques o continguts que puguin vulnerar drets, pots comunicar-ho al correu indicat a l’apartat 1.','Jose Manuel Rodriguez Sanchez respondrà en els supòsits previstos per la legislació aplicable. Aquest avís no estableix una exempció general de responsabilitat ni restringeix drets irrenunciables dels usuaris.']},
+  {heading:'6. Enllaços',paras:['Els enllaços a la web corporativa i a la plataforma del curs permeten continuar la sol·licitud d’informació o la contractació. L’ús d’una altra adreça web o d’una plataforma tecnològica no elimina les responsabilitats que puguin correspondre al titular pels seus propis serveis.','Respecte dels enllaços a llocs de tercers independents, la seva inclusió no suposa assumir la gestió dels seus continguts. Si es comunica l’existència de continguts il·lícits, s’adoptaran les mesures que corresponguin conforme a la normativa aplicable.']},
+  {heading:'7. Propietat intel·lectual i industrial',paras:['Els drets sobre els textos, imatges, materials formatius, dissenys, signes distintius i codi del lloc corresponen als seus respectius titulars.','La navegació no implica una cessió d’aquests drets. La reproducció, distribució, comunicació pública o transformació de continguts protegits requereix l’autorització corresponent, tret dels usos permesos per la llei o per les llicències aplicables. Els components de tercers conserven les seves pròpies condicions de llicència.']},
+  {heading:'8. Protecció de dades i galetes',paras:['El tractament de dades personals està subjecte al Reglament (UE) 2016/679 (RGPD) i a la Llei Orgànica 3/2018, de Protecció de Dades Personals i garantia dels drets digitals.','Consulta la [[privacy]] per conèixer la informació sobre el responsable, les finalitats i bases jurídiques del tractament, la conservació, els destinataris i l’exercici de drets. La informació sobre galetes i tecnologies similars es recull a la [[cookies]].','La simple navegació no constitueix, per si sola, consentiment per rebre publicitat ni per utilitzar galetes no necessàries.']},
+  {heading:'9. Legislació aplicable i reclamacions',paras:['S’aplicarà la normativa espanyola i de la Unió Europea que hi correspongui. Les consultes i reclamacions es poden dirigir a les dades de contacte de l’apartat 1.','Les controvèrsies se sotmetran als òrgans que resultin competents conforme a la llei, respectant les normes imperatives i els fòrums de protecció del consumidor quan siguin aplicables.']}
+] : [
+  {heading:'1. Identification of the provider',paras:['In accordance with Article 10 of Law 34/2002 of 11 July on Information Society Services and Electronic Commerce (LSSI-CE), the following information is provided:'],dl:{'Site owner and service provider':'Jose Manuel Rodriguez Sanchez','Brand used on this site':'iTR+.','National identity document (DNI)':'52397964P.','Registered office':'Calle Ferreria, 28bis, local, 08014, Barcelona, España (Spain).','Registration details':'Not registered in the Barcelona Company Registry (Registro Mercantil de Barcelona).','Contact email':'[[mailto:info@perinfor.com|info@perinfor.com]]','Contact telephone':'[[tel:+34619223158|+34 619 22 31 58]]','Website':'abogados.itrplus.com.'}},
+  {heading:'2. Purpose and access',paras:['This site presents the «Curso de investigación digital para estudiantes» (digital investigation course for students), linked to the product «Acreditación Técnico Especialista en Análisis Forense en la Web», and provides information on its contents, methodology and access.','Browsing this page is free of charge and does not require registration. Enrolment and access to the training take place through the corporate platform and may require identification and acceptance of the corresponding contracting terms.']},
+  {heading:'3. Course information and contracting',paras:['The corporate services related to this page are:'],ul:['[['+CORPORATE_URL+'|iTR+ corporate website]]: information and requests.','[['+COURSE_URL+'|Course page and platform]]: access to the training and contracting terms.'],postParas:['The price and economic terms are available on the contracting platform. Before assuming a payment obligation, the interested party must have the required pre-contractual information, including the total price with applicable taxes, the payment and service provision terms and, where applicable, the right of withdrawal and how to exercise it.','This notice does not replace the contracting terms or limit the rights legally recognised to anyone with consumer status. Advertising information required under applicable law remains effective even if it is not reproduced in the contract.']},
+  {heading:'4. Terms of use',paras:['Users must use the site and its contents lawfully, respecting the rights of others. The investigation techniques are presented for legitimate purposes, with respect for privacy, personal-data protection and limits on access to information.','The site’s resources may not be used to carry out unauthorised access, harassment, identity impersonation or unlawful processing of personal data, nor to damage or alter the operation of the service.','The fact that information is publicly accessible does not authorise any subsequent use: processing personal data requires an adequate legal basis and compliance with applicable law.']},
+  {heading:'5. Contents and liability',paras:['The demonstrations and exercises on this page use simulated data for teaching purposes. Their contents are informative and educational and do not constitute legal advice on a specific matter.','If you detect errors, technical incidents or content that may infringe rights, you can report them via the email address given in section 1.','Jose Manuel Rodriguez Sanchez will answer in the cases provided for by applicable law. This notice does not create a general exemption from liability nor does it restrict non-waivable user rights.']},
+  {heading:'6. Links',paras:['The links to the corporate website and the course platform allow the request for information or contracting to continue. Using another web address or a different technological platform does not remove the liability that may correspond to the owner for its own services.','Regarding links to independent third-party sites, their inclusion does not imply assuming the management of their contents. If the existence of unlawful contents is reported, the appropriate measures will be taken in accordance with applicable law.']},
+  {heading:'7. Intellectual and industrial property',paras:['The rights over the texts, images, training materials, designs, distinctive signs and code of the site belong to their respective owners.','Browsing does not imply an assignment of those rights. The reproduction, distribution, public communication or transformation of protected content requires the corresponding authorisation, except for uses permitted by law or by the applicable licences. Third-party components keep their own licence terms.']},
+  {heading:'8. Data protection and cookies',paras:['The processing of personal data is subject to Regulation (EU) 2016/679 (GDPR) and to Spanish Organic Law 3/2018 on the Protection of Personal Data and guarantee of digital rights.','See the [[privacy]] for information about the controller, the purposes and legal bases of processing, retention, recipients and the exercise of rights. Information about cookies and similar technologies is set out in the [[cookies]].','Mere browsing does not, by itself, constitute consent to receive advertising or to use non-essential cookies.']},
+  {heading:'9. Applicable law and claims',paras:['The applicable Spanish and European Union rules will apply. Enquiries and claims can be directed to the contact details given in section 1.','Disputes will be submitted to the bodies that are competent under the law, respecting mandatory rules and consumer-protection jurisdictions where applicable.']}
+]) as unknown as (Block & {postParas?:string[]})[];
+
+type LegalBlock = Block & {postParas?:string[];time?:{datetime:string;text:string}};
+const blocks: Record<string, LegalBlock[]> | null = {
+  'aviso-legal': legalNotice as LegalBlock[],
+  'politica-de-privacidad': (privacyPolicy[locale] ?? []) as unknown as LegalBlock[],
+};
+const content = ca ? {
+  'politica-de-cookies':['Què utilitza avui aquest lloc','No hi ha rastrejadors, píxels ni cookies de tercers. L’emmagatzematge de consentiment és local i serveix per recordar la teva elecció.','Com canviar la teva decisió','Utilitza el control Configura les galetes del peu de pàgina per refer les preferències.'],
+  'accesibilidad':['Estat de l’accessibilitat','El lloc s’ha desenvolupat amb un objectiu tècnic WCAG 2.2 AA. És un objectiu d’implementació, no una declaració jurídica completa.','Comunicar incidències','Si trobes un obstacle d’accés, comunica’l mitjançant el canal de contacte d’iTR+.']
+} : {
+  'politica-de-cookies':['What this site uses today','There are no trackers, pixels, or third-party cookies. Consent storage is local and only remembers your choice.','Changing your choice','Use the Configure cookies control in the footer to change your preferences.'],
+  'accesibilidad':['Accessibility status','This site was developed with a technical WCAG 2.2 AA objective. This is an implementation objective, not a complete legal conformance statement.','Report an issue','If you find an access barrier, report it through iTR+ contact channels.']
+};
+const simpleContent = content[slug as 'politica-de-cookies'|'accesibilidad'];
+const pageBlocks = blocks[slug] ?? null;
+type Part = {kind:'text'|'link';text:string;href?:string};
+function tokenize(value: string): Part[] {
+  return value.split(/\[\[(.+?)\]\]/g).map(raw => {
+    if (raw.includes('|')) { const i = raw.indexOf('|'); return {kind:'link' as const, href:raw.slice(0,i), text:raw.slice(i+1)}; }
+    if (raw === 'privacy' || raw === 'cookies') return {kind:'link' as const, href:inlineLinks[raw].href, text:inlineLinks[raw].text};
+    return {kind:'text' as const, text:raw};
+  });
+}
+---
+<!doctype html><html lang={ca?'ca-ES':'en-GB'}><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>{title} | iTR+</title><meta name="description" content={description}/><link rel="icon" href="/favicon-itr.ico" sizes="16x16 32x32 48x48"/><link rel="icon" href="/images/favicon-itr-32.png" type="image/png" sizes="32x32"/></head><body>
+<a class="skip" href="#contenido">{ca?'Saltar al contingut':'Skip to content'}</a><header class="header legal-header"><div class="container header-inner"><BrandLogo href={`/${locale}/`} label="iTR+, home"/><span class="brand-caption">{ca?'INVESTIGACIÓ I FORMACIÓ DIGITAL':'INVESTIGATION AND DIGITAL TRAINING'}</span><a class="button compact" href={`/${locale}/#inicio`}>{ca?'Torna al curs':'Back to the course'}</a></div></header>
+<main id="contenido" class="section container legal"><p class="eyebrow">{ca?'INFORMACIÓ LEGAL':'LEGAL INFORMATION'}</p><h1>{title}</h1><div class="legal-layout"><nav class="legal-page-nav" aria-label={ca?'Navegació legal':'Legal navigation'}><p class="legal-page-nav-title">{ca?'Documents':'Documents'}</p>{links.map((href,i)=><a href={href} class={href.endsWith(`/${slug}/`)?'is-current':undefined} aria-current={href.endsWith(`/${slug}/`)?'page':undefined}>{labels[i]}</a>)}</nav><article class="legal-content">
+{pageBlocks ? pageBlocks.map((block, bi) => ((
+  <Fragment key={bi}>
+    <h2>{block.heading}</h2>
+    {block.paras.map((p: string, i: number) => <p>{(parts => (<>{parts.map((part) => part.kind === 'text' ? part.text : <a href={part.href}>{part.text}</a>)}</>))(tokenize(p))}</p>)}
+    {block.dl ? <dl>{Object.entries(block.dl).map(([k, v]) => (<><dt>{k}</dt><dd>{(parts => (<>{parts.map((part) => part.kind === 'text' ? part.text : <a href={part.href}>{part.text}</a>)}</>))(tokenize(String(v)))}</dd></>))}</dl> : null}
+    {block.ul ? <ul>{block.ul.map((li) => <li>{(parts => (<>{parts.map((part) => part.kind === 'text' ? part.text : <a href={part.href}>{part.text}</a>)}</>))(tokenize(String(li)))}</li>)}</ul> : null}
+    {block.postParas ? block.postParas.map((p: string) => <p>{(parts => (<>{parts.map((part) => part.kind === 'text' ? part.text : <a href={part.href}>{part.text}</a>)}</>))(tokenize(String(p)))}</p>) : null}
+    {block.time ? <p><time datetime={block.time.datetime}>{block.time.text}</time></p> : null}
+  </Fragment>
+))) : null}
+{pageBlocks ? null : (<><h2>{simpleContent![0]}</h2><p>{simpleContent![1]}</p><h2>{simpleContent![2]}</h2><p>{simpleContent![3]}</p><p>{ca?'Pots consultar la política de privacitat i la política de galetes per obtenir més informació.':'See the privacy and cookie policies for further information.'}</p></>)}
+</article></div></main>
+<footer class="container footer legal-footer"><BrandLogo href={`/${locale}/`} label="iTR+, home"/><p>{ca?'Formació especialitzada en investigació digital mitjançant fonts obertes.':'Specialist training in digital investigation using open sources.'}</p><a href={destination('contact','footer_contactar')}>{ca?'Contactar amb iTR+':'Contact iTR+'}</a><nav class="footer-legal" aria-label={ca?'Enllaços legals':'Legal links'}>{links.map((href,i)=><a href={href}>{labels[i]}</a>)}<button type="button" data-consent-configure>{ca?'Configura les galetes':'Configure cookies'}</button></nav></footer><CookieNotice locale={locale}/></body></html>
+<style>
+  .legal-layout{display:grid;grid-template-columns:minmax(180px,240px) minmax(0,var(--reading-width));gap:clamp(32px,7vw,96px);align-items:start}.legal-page-nav{position:sticky;top:calc(var(--header-h) + 24px);display:grid;gap:8px;border-top:1px solid var(--line);padding-top:16px}.legal-page-nav-title{margin:0 0 8px;font:500 var(--text-decorative)/1.4 var(--font-display);letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-muted)}.legal-page-nav a{padding:7px 0;color:var(--color-text-muted)}.legal-page-nav a.is-current{color:#2563a6;font-weight:600}.legal-content{max-width:var(--reading-width)}.legal-content a{overflow-wrap:anywhere}@media(max-width:760px){.legal-layout{grid-template-columns:1fr;gap:32px}.legal-page-nav{position:static;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 18px}.legal-page-nav-title{grid-column:1/-1}.legal-content{max-width:none}}
+</style>

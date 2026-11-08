@@ -1,0 +1,95 @@
+---
+import '../../styles/hero-investigation.css';
+---
+<figure class="hero-scene" data-hero-video-stage>
+  <div class="hero-video-fade-y">
+    <div class="hero-video-fade-x">
+      <video
+        class="hero-video"
+        width="1280"
+        height="720"
+        autoplay
+        muted
+        playsinline
+        loop
+        disablepictureinpicture
+        controlslist="nodownload noplaybackrate noremoteplayback"
+        preload="auto"
+        poster="/images/hero-investigation-video-poster.webp"
+        aria-hidden="true"
+      >
+        <source src="/videos/itr-estudiantes.mp4" type="video/mp4" />
+      </video>
+    </div>
+  </div>
+</figure>
+
+<script>
+  const initialized = new WeakSet<HTMLElement>();
+
+  function initHeroVideo() {
+    const stage = document.querySelector<HTMLElement>('[data-hero-video-stage]');
+    const video = stage?.querySelector<HTMLVideoElement>('.hero-video');
+    if (!stage || !video || initialized.has(stage)) return;
+    initialized.add(stage);
+
+    video.defaultMuted = true;
+    video.muted = true;
+
+    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let eligible = false;
+    let destroyed = false;
+
+    const syncPlayback = () => {
+      if (destroyed || !eligible || document.hidden || motion.matches) {
+        video.pause();
+        return;
+      }
+      const attempt = video.play();
+      if (attempt) attempt.catch(() => undefined);
+    };
+
+    const updateEligibility = () => {
+      const rect = stage.getBoundingClientRect();
+      const visible = Math.max(0, Math.min(rect.bottom, innerHeight) - Math.max(rect.top, 0));
+      const ratio = rect.height ? visible / rect.height : 0;
+      if (ratio >= .25) eligible = true;
+      if (ratio <= .05) eligible = false;
+      syncPlayback();
+    };
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry) return;
+      if (entry.intersectionRatio >= .25) eligible = true;
+      if (entry.intersectionRatio <= .05) eligible = false;
+      syncPlayback();
+    }, { threshold: [0, .05, .25] });
+
+    const onVisibility = () => syncPlayback();
+    const onMotionChange = () => syncPlayback();
+    const onReady = () => updateEligibility();
+    const onBeforeSwap = () => destroy();
+    const destroy = () => {
+      if (destroyed) return;
+      destroyed = true;
+      video.pause();
+      observer.disconnect();
+      document.removeEventListener('visibilitychange', onVisibility);
+      motion.removeEventListener('change', onMotionChange);
+      video.removeEventListener('loadeddata', onReady);
+      document.removeEventListener('astro:before-swap', onBeforeSwap);
+      initialized.delete(stage);
+    };
+
+    observer.observe(stage);
+    updateEligibility();
+    document.addEventListener('visibilitychange', onVisibility);
+    motion.addEventListener('change', onMotionChange);
+    video.addEventListener('loadeddata', onReady);
+    document.addEventListener('astro:before-swap', onBeforeSwap);
+    if (video.readyState >= 2) updateEligibility();
+  }
+
+  initHeroVideo();
+  document.addEventListener('astro:page-load', initHeroVideo);
+</script>

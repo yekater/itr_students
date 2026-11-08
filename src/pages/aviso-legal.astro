@@ -1,0 +1,59 @@
+﻿---
+import LegalLayout from '../layouts/LegalLayout.astro';
+import {brand,owner} from '../data/legal';
+import {CORPORATE_URL,COURSE_URL} from '../data/site';
+---
+<LegalLayout title="Aviso legal" description="Aviso legal del Curso de investigación digital para estudiantes de iTR+: identificación del titular, condiciones de uso, responsabilidad y protección de datos.">
+  <h2>1. Identificación del titular</h2>
+  <p>De acuerdo con el artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE), se facilita la siguiente información:</p>
+  <dl>
+    <dt>Titular del sitio y prestador del servicio</dt><dd>Jose Manuel Rodriguez Sanchez</dd>
+    <dt>Marca utilizada en este sitio</dt><dd>iTR+.</dd>
+    <dt>DNI</dt><dd>{owner.nif}.</dd>
+    <dt>Domicilio social</dt><dd>Calle Ferreria, 28bis, local, 08014, Barcelona, España.</dd>
+    <dt>Datos registrales</dt><dd>No inscrita en el Registro Mercantil de Barcelona.</dd>
+    <dt>Correo electrónico de contacto</dt><dd><a href="mailto:info@perinfor.com">info@perinfor.com</a>.</dd>
+    <dt>Teléfono de contacto</dt><dd><a href="tel:+34619223158">+34 619 22 31 58</a>.</dd>
+    <dt>Sitio web</dt><dd>abogados.itrplus.com.</dd>
+  </dl>
+
+  <h2>2. Objeto y acceso</h2>
+  <p>Este sitio presenta el «{brand.product}», vinculado al producto «{brand.courseProduct}», y facilita información sobre sus contenidos, metodología y acceso.</p>
+  <p>La navegación por esta página es gratuita y no requiere registro. La matrícula y el acceso a la formación se realizan mediante la plataforma corporativa y pueden requerir identificación y la aceptación de las condiciones de contratación correspondientes.</p>
+
+  <h2>3. Información y contratación del curso</h2>
+  <p>Los servicios corporativos relacionados con esta página son:</p>
+  <ul>
+    <li><a href="https://perinfor.odoo.com/">Web corporativa de iTR+</a>: información y solicitudes.</li>
+    <li><a href={COURSE_URL}>Ficha y plataforma del curso</a>: acceso a la formación y condiciones de contratación.</li>
+  </ul>
+  <p>El precio y las condiciones económicas se consultan en la plataforma de contratación. Antes de asumir una obligación de pago, la persona interesada deberá disponer de la información precontractual exigible, incluido el precio total con los impuestos aplicables, las condiciones de pago y prestación del servicio y, cuando corresponda, el derecho de desistimiento y sus condiciones de ejercicio.</p>
+  <p>Este aviso no sustituye las condiciones de contratación ni limita los derechos legalmente reconocidos a quienes tengan la condición de consumidores. La información publicitaria que resulte exigible conforme a la normativa aplicable conservará su eficacia aunque no se reproduzca en el contrato.</p>
+
+  <h2>4. Condiciones de uso</h2>
+  <p>El usuario deberá utilizar el sitio y sus contenidos de forma lícita, respetando los derechos de otras personas. Las técnicas de investigación se presentan para finalidades legítimas, con respeto a la privacidad, a la protección de datos personales y a los límites de acceso a la información.</p>
+  <p>No se permite utilizar los recursos del sitio para realizar accesos no autorizados, acoso, suplantación de identidad o tratamientos ilícitos de datos personales, ni para dañar o alterar el funcionamiento del servicio.</p>
+  <p>Que una información sea públicamente accesible no autoriza cualquier uso posterior: el tratamiento de datos personales requiere una base jurídica adecuada y el cumplimiento de la normativa aplicable.</p>
+
+  <h2>5. Contenidos y responsabilidad</h2>
+  <p>Las demostraciones y los ejercicios de esta página utilizan datos simulados con fines didácticos. Sus contenidos son informativos y formativos y no constituyen asesoramiento jurídico sobre un asunto concreto.</p>
+  <p>Si detectas errores, incidencias técnicas o contenidos que puedan vulnerar derechos, puedes comunicarlo a través del correo indicado en el apartado 1.</p>
+  <p>Jose Manuel Rodriguez Sanchez responderá en los supuestos previstos por la legislación aplicable. Este aviso no establece una exención general de responsabilidad ni restringe derechos irrenunciables de los usuarios.</p>
+
+  <h2>6. Enlaces</h2>
+  <p>Los enlaces a la web corporativa y a la plataforma del curso permiten continuar la solicitud de información o la contratación. El uso de otra dirección web o de una plataforma tecnológica no elimina las responsabilidades que correspondan al titular por sus propios servicios.</p>
+  <p>Respecto de los enlaces a sitios de terceros independientes, su inclusión no supone asumir la gestión de sus contenidos. Si se comunica la existencia de contenidos ilícitos, se adoptarán las medidas que correspondan conforme a la normativa aplicable.</p>
+
+  <h2>7. Propiedad intelectual e industrial</h2>
+  <p>Los derechos sobre los textos, imágenes, materiales formativos, diseños, signos distintivos y código del sitio corresponden a sus respectivos titulares.</p>
+  <p>La navegación no implica una cesión de esos derechos. La reproducción, distribución, comunicación pública o transformación de contenidos protegidos requiere la autorización correspondiente, salvo los usos permitidos por la ley o por las licencias aplicables. Los componentes de terceros conservan sus propias condiciones de licencia.</p>
+
+  <h2>8. Protección de datos y cookies</h2>
+  <p>El tratamiento de datos personales está sujeto al Reglamento (UE) 2016/679 (RGPD) y a la Ley Orgánica 3/2018, de Protección de Datos Personales y garantía de los derechos digitales.</p>
+  <p>Consulta la <a href="/politica-de-privacidad/">Política de privacidad</a> para conocer la información sobre el responsable, las finalidades y bases jurídicas del tratamiento, la conservación, los destinatarios y el ejercicio de derechos. La información sobre cookies y tecnologías similares se recoge en la <a href="/politica-de-cookies/">Política de cookies</a>.</p>
+  <p>La mera navegación no constituye, por sí sola, consentimiento para recibir publicidad ni para utilizar cookies no necesarias.</p>
+
+  <h2>9. Legislación aplicable y reclamaciones</h2>
+  <p>Se aplicará la normativa española y de la Unión Europea que corresponda. Las consultas y reclamaciones pueden dirigirse a los datos de contacto del apartado 1.</p>
+  <p>Las controversias se someterán a los órganos que resulten competentes conforme a la ley, respetando las normas imperativas y los fueros de protección del consumidor cuando sean aplicables.</p>
+</LegalLayout>

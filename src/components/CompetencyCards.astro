@@ -1,0 +1,159 @@
+---
+// Компетенции идут в обычном потоке после программы: описание не скрывается
+// за вторым accordion/dislosure и доступно на touch, keyboard и reduced motion.
+import {Picture} from 'astro:assets';
+import overview from '../assets/competencies/competency-overview.jpg';
+import companies from '../assets/competencies/competency-companies.jpg';
+import identities from '../assets/competencies/competency-identities.jpg';
+import search from '../assets/competencies/competency-search.jpg';
+import reports from '../assets/competencies/competency-reports.jpg';
+
+const {locale='es'} = Astro.props;
+const es = {
+  cards: [
+    {
+      id: 'overview',
+      image: overview,
+      title: 'Formación en técnicas de investigación digital',
+      description: `Formación online dirigida a estudiantes y personas interesadas en la investigación digital. Aprende a buscar y analizar información, investigar personas y empresas, localizar en redes sociales, utilizar herramientas especializadas y analizar y documentar. 30 horas de carga formativa estimada. El tiempo configurado actualmente en la plataforma es de 15 h 10 min. Este tiempo incluye ver los vídeos, hacer los ejercicios, trabajar de forma individual y completar la evaluación.`,
+      wide: true,
+      position: 'itr-pos-overview',
+    },
+    {
+      id: 'companies',
+      image: companies,
+      title: 'Investigación de empresas y sociedades en fuentes abiertas',
+      description: 'Para estudiantes e investigadores: consulta de registros públicos, directorios empresariales y herramientas digitales para recopilar y analizar datos.',
+      wide: false,
+      position: 'itr-pos-companies',
+    },
+    {
+      id: 'identities',
+      image: identities,
+      title: 'Investigación de identidades digitales y redes sociales',
+      description: 'Búsquedas avanzadas, análisis de perfiles públicos y verificación de fuentes. Una metodología estructurada que prioriza la fiabilidad y el respeto a la privacidad.',
+      wide: false,
+      position: 'itr-pos-identities',
+    },
+    {
+      id: 'search',
+      image: search,
+      title: 'Búsqueda avanzada de información en internet',
+      description: 'Operadores, localización de documentos y selección de fuentes fiables para proyectos académicos y profesionales.',
+      wide: false,
+      position: 'itr-pos-search',
+    },
+    {
+      id: 'reports',
+      image: reports,
+      title: 'Elaboración y documentación de informes de investigación',
+      description: 'Recopilación de evidencias digitales e informes claros, estructurados y trazables, con sus fuentes y límites explícitos, para mostrar en tu portafolio.',
+      wide: false,
+      position: 'itr-pos-reports',
+    },
+  ] as const,
+};
+const ca = {
+  cards: [
+    {
+      id: 'overview',
+      image: overview,
+      title: 'Formació en tècniques d’investigació digital',
+      description: `Formació en línia dirigida a estudiants i persones interessades en la investigació digital. Aprèn a cercar i analitzar informació, investigar persones i empreses, localitzar a xarxes socials, utilitzar eines especialitzades i analitzar i documentar. 30 hores de càrrega formativa estimada. El temps configurat actualment a la plataforma és de 15 h 10 min. Aquest temps inclou veure els vídeos, fer els exercicis, treballar de forma individual i completar l\u2019avaluació.`,
+      wide: true,
+      position: 'itr-pos-overview',
+    },
+    {
+      id: 'companies',
+      image: companies,
+      title: 'Investigació d’empreses i societats en fonts obertes',
+      description: 'Per a estudiants i investigadors: consulta de registres públics, directoris empresarials i eines digitals per recollir i analitzar dades.',
+      wide: false,
+      position: 'itr-pos-companies',
+    },
+    {
+      id: 'identities',
+      image: identities,
+      title: 'Investigació d’identitats digitals i xarxes socials',
+      description: 'Cerques avançades, anàlisi de perfils públics i verificació de fonts. Una metodologia estructurada que prioritza la fiabilitat i el respecte a la privacitat.',
+      wide: false,
+      position: 'itr-pos-identities',
+    },
+    {
+      id: 'search',
+      image: search,
+      title: 'Cerca avançada d’informació a internet',
+      description: 'Operadors, localització de documents i selecció de fonts fiables per a projectes acadèmics i professionals.',
+      wide: false,
+      position: 'itr-pos-search',
+    },
+    {
+      id: 'reports',
+      image: reports,
+      title: 'Elaboració i documentació d’informes d’investigació',
+      description: 'Recollida d’evidències digitals i informes clars, estructurats i traçables, amb fonts i límits explícits, per mostrar al teu portafoli.',
+      wide: false,
+      position: 'itr-pos-reports',
+    },
+  ] as const,
+};
+const en = {
+  cards: [
+    {
+      id: 'overview',
+      image: overview,
+      title: 'Training in digital investigation techniques',
+      description: `Online training for students and anyone interested in digital investigation. Learn to find and analyse information, investigate people and companies, locate information on social media, use specialist tools, and analyse and document. Estimated study load of 30 hours. The time currently configured on the platform is 15 h 10 min. This time includes watching the videos, doing the exercises, working individually and completing the final assessment.`,
+      wide: true,
+      position: 'itr-pos-overview',
+    },
+    {
+      id: 'companies',
+      image: companies,
+      title: 'Investigating companies and businesses in open sources',
+      description: 'For students and researchers: querying public registers, business directories and digital tools to collect and analyse data.',
+      wide: false,
+      position: 'itr-pos-companies',
+    },
+    {
+      id: 'identities',
+      image: identities,
+      title: 'Investigating digital identities and social media',
+      description: 'Advanced searches, analysis of public profiles and source verification. A structured methodology that prioritises reliability and respect for privacy.',
+      wide: false,
+      position: 'itr-pos-identities',
+    },
+    {
+      id: 'search',
+      image: search,
+      title: 'Advanced information search on the internet',
+      description: 'Operators, document location and selection of reliable sources for academic and professional projects.',
+      wide: false,
+      position: 'itr-pos-search',
+    },
+    {
+      id: 'reports',
+      image: reports,
+      title: 'Production and documentation of investigation reports',
+      description: 'Collection of digital evidence plus clear, structured and traceable reports, with explicit sources and limits, ready for your portfolio.',
+      wide: false,
+      position: 'itr-pos-reports',
+    },
+  ] as const,
+};
+const variant = locale==='ca'?ca:locale==='en'?en:es;
+const cards=variant.cards;
+---
+<div class="itr-competencies">
+  {cards.map(card => (
+    <article class:list={['itr-competency', {'itr-competency--wide': card.wide}, card.position]} data-competency={card.id}>
+      <Picture src={card.image} alt="" widths={[560, 840, 1120]} sizes="(min-width: 960px) 50vw, 92vw" formats={['webp']} loading="lazy" decoding="async" class="itr-competency__photo"/>
+      <div class="itr-competency__shade" aria-hidden="true"></div>
+      <div class="itr-competency__glass" aria-hidden="true"></div>
+      <div class="itr-competency__content">
+        <h3 class="itr-competency__title"><button type="button" class="itr-competency__control" aria-expanded="false" aria-controls={`competency-${card.id}-panel`}><span class="itr-competency__sign" aria-hidden="true"></span><span>{card.title}</span></button></h3>
+        <div id={`competency-${card.id}-panel`} class="itr-competency__panel"><p>{card.description}</p></div>
+      </div>
+    </article>
+  ))}
+</div>

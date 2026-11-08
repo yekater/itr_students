@@ -1,0 +1,29 @@
+---
+import {benefits as spanishBenefits} from '../data/site';
+type Benefit=readonly [string,string,...unknown[]];
+type Copy={eyebrow:string;title:string;titleB:string;intro?:string;introStrongHtml:string;introBody:string};
+type Props={benefits?:readonly Benefit[];copy?:Copy};
+const {benefits=spanishBenefits, copy={eyebrow:'01 / CONTEXTO', title:'Cuatro áreas', titleB:'de investigación.', introStrongHtml:'En 2025, <a href="https://www.incibe.es/incibe/sala-de-prensa/incibe-detecto-mas-de-122000-incidentes-de-ciberseguridad-en-2025" target="_blank" rel="noreferrer">INCIBE</a> registró <strong>más de 122.000</strong> ciberincidentes en España.', introBody:'Especialízate en investigación digital y añade a tu formación una competencia que marca la diferencia en procesos de selección y en el mercado laboral.'}}:Props = Astro.props;
+---
+<section id="aplicaciones" class="itr-contexto" aria-labelledby="contexto-title">
+  <div class="itr-contexto-inner container">
+    <p class="eyebrow">{copy.eyebrow}</p>
+    <div class="itr-contexto-intro">
+      <h2 id="contexto-title">{copy.title}<br/><em>{copy.titleB}</em></h2>
+      <div class="itr-contexto-side">
+        {copy.intro ? <p>{copy.intro}</p> : <p class="itr-contexto-lead" set:html={copy.introStrongHtml}/>}
+        {copy.intro ? null : <p>{copy.introBody}</p>}
+      </div>
+    </div>
+    <ol class="itr-contexto-grid">
+      {benefits.map(([title,description], index) => (
+        <li>
+          <span class="itr-contexto-number">0{index + 1} /</span>
+          <h3>{title}</h3>
+          <hr/>
+          <p>{description}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

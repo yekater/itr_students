@@ -1,0 +1,10 @@
+import {chromium} from '@playwright/test';
+import {readFileSync} from 'node:fs';
+const inter=readFileSync('node_modules/@fontsource/inter/files/inter-latin-400-normal.woff2').toString('base64');
+const plex=readFileSync('node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-500-normal.woff2').toString('base64');
+const browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--no-sandbox']});
+const page=await browser.newPage({viewport:{width:1200,height:630},deviceScaleFactor:1});
+await page.setContent(`<html lang="es-ES"><head><style>@font-face{font-family:Inter;src:url(data:font/woff2;base64,${inter})}@font-face{font-family:'IBM Plex Sans';font-weight:500;src:url(data:font/woff2;base64,${plex})}body{margin:0;background:#0B1F3A;color:white;font-family:Inter;padding:65px 70px;box-sizing:border-box;width:1200px;height:630px;background-image:radial-gradient(ellipse at right,#2563a6,transparent)}h1,.wordmark{font-family:'IBM Plex Sans';font-weight:500}</style></head><body><div class="wordmark" style="font-size:50px">iTR<span style="color:#507DA8">+</span></div><p style="font-size:17px;letter-spacing:4px;margin-top:40px">CURSO OSINT PARA ABOGADOS</p><h1 style="font-size:64px;line-height:1.1;margin:30px 0">Investiga más allá<br>de los documentos.</h1><p style="font-size:23px;color:#b9d6eb">Localizar. Contrastar. Documentar.</p></body></html>`);
+await page.evaluate(()=>document.fonts.ready);
+await page.screenshot({path:'public/images/social.png'});
+await browser.close();

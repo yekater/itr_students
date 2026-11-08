@@ -1,0 +1,7 @@
+---
+interface Props { href: string; label?: string }
+const { href, label = 'iTR+, inicio' } = Astro.props as Props;
+---
+<a class="wordmark" href={href} aria-label={label}>
+  <img src="/images/itr-logo.png" width="124" height="49" alt="iTR+" decoding="async" />
+</a>

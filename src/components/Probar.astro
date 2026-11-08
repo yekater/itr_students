@@ -1,0 +1,16 @@
+﻿---
+import InvestigationDemo from './investigation-demo/InvestigationDemo';
+import {destination} from '../lib/links';
+const {locale='es', copy={eyebrow:'10 / PRUEBA EL MÉTODO', title:'Mapa de fuentes.<br/>Un caso para practicar.', description:'Una demostración breve (2–4 minutos, sin registro): elige una ruta de búsqueda, lee el documento, comprueba su procedencia y documenta lo que las fuentes permiten afirmar. Datos simulados; no se realizan búsquedas externas.'}} = Astro.props;
+const ctaHref=destination('course',`probar_${locale}`);
+---
+<section id="probar" class="section lab">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">{copy.eyebrow}</p>
+      <h2 set:html={copy.title}></h2>
+      <p>{copy.description}</p>
+    </div>
+    <InvestigationDemo client:load ctaHref={ctaHref} locale={locale}/>
+  </div>
+</section>

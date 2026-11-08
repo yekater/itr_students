@@ -1,0 +1,24 @@
+---
+import {type SupportedLocale} from '../data/locales';
+import {audienceCopy} from '../data/audience-copy';
+
+interface Props{locale?:SupportedLocale}
+const {locale='es'}=Astro.props;
+const copy=audienceCopy[locale];
+const summary={
+ es:'También para quienes amplían su mirada digital',
+ ca:'També per a qui amplia la seva mirada digital',
+ en:'Also for people broadening their digital perspective'
+}[locale];
+---
+<p class="audience-lead">{locale==='ca'?'Selecciona la teva especialitat per explorar una aplicació.':locale==='en'?'Select a specialism to explore an application.':'Selecciona tu especialidad para explorar una aplicación.'}</p>
+<details class="secondary-audience" id="audience-extra">
+  <summary>{summary}<span class="plus" aria-hidden="true">+</span></summary>
+  <div class="secondary-audience-body">
+    <h4 class="audience-strong">{copy.title}</h4>
+    <p>{copy.paragraphs[0]}</p>
+    <p set:html={copy.paragraphs[1]}/>
+    <p>{copy.paragraphs[2]}</p>
+    <ul>{copy.bullets.map(b=><li><strong>{b.lead}</strong> {b.text}</li>)}</ul>
+  </div>
+</details>

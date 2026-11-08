@@ -1,0 +1,9 @@
+# Despliegue
+
+Requiere Node 24 y npm. `npm ci`, `npm run check`, `npm run build`. Publicar exclusivamente dist/, nunca la raíz, docs, src o mapas de código. Preview: PUBLIC_DEPLOY_ENV=preview, noindex. Para producción: PUBLIC_DEPLOY_ENV=production PUBLIC_SITE_URL=https://dominio-real npm run build. Se rechaza localhost o dominios reservados; no se utiliza Odoo como canonical. Sustituir dominio de preview al conocer el definitivo. El dominio .invalid es un identificador reservado para el artefacto, no un enlace público utilizable.
+
+Verificar los documentos legales del responsable que cubran el dominio antes de publicar. No se inventaron enlaces. Confirmar afirmaciones comerciales pendientes según fuentes-y-verificaciones.md. HTTPS, redirección www/sin www según dominio elegido. Cache-Control: immutable un año para /_astro/*; revalidación para HTML, robots, sitemap y descargas. Evitar caché indefinida del PDF sin versionado.
+
+Cabeceras a configurar y comprobar en el alojamiento (no aplicadas por Astro estático): X-Content-Type-Options: nosniff; Referrer-Policy: strict-origin-when-cross-origin; Permissions-Policy: camera=(), microphone=(), geolocation=(); CSP con default-src 'self', object-src 'none', base-uri 'self', frame-ancestors 'none', font-src 'self', img-src 'self' data:, connect-src 'self', style-src 'self' 'unsafe-inline' para Motion, y hashes exactos de scripts inline/JSON-LD en script-src además de 'self'. Generar hashes en cada build, validar CSP en report-only antes de imponerla. No usar una política que rompa hidratación. No hay llamadas al CRM ni analítica externa.
+
+Servicios: `npm run dev` para desarrollo, `npm run preview -- --port 4321` para validar dist. Los procesos no persisten en nuevas tareas; trabajar en el checkout existente, sin crear worktrees. No se ha modificado DNS ni publicado el sitio.

@@ -1,0 +1,55 @@
+---
+import '../styles/global.css';
+import '@fontsource/inter/latin-400.css';
+import '@fontsource/inter/latin-500.css';
+import '@fontsource/ibm-plex-sans/latin-400.css';
+import '@fontsource/ibm-plex-sans/latin-500.css';
+import CookieNotice from '../components/CookieNotice.astro';
+import BrandLogo from '../components/BrandLogo.astro';
+
+interface Props { title: string; description: string }
+const { title, description } = Astro.props as Props;
+const currentPath = Astro.url.pathname;
+const legalLinks = [
+  ['/aviso-legal/', 'Aviso legal'],
+  ['/politica-de-privacidad/', 'Política de privacidad'],
+  ['/politica-de-cookies/', 'Política de cookies'],
+  ['/accesibilidad/', 'Accesibilidad'],
+] as const;
+---
+<!doctype html><html lang="es-ES"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>{title} | iTR+</title><meta name="description" content={description}/><meta name="robots" content="index,follow"/><link rel="icon" href="/favicon-itr.ico" sizes="16x16 32x32 48x48"/><link rel="icon" href="/images/favicon-itr-32.png" type="image/png" sizes="32x32"/></head><body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<header class="header legal-header"><div class="container header-inner"><BrandLogo href="/"/><span class="brand-caption">INVESTIGACIÓN<br/>Y FORMACIÓN DIGITAL</span><a class="button compact" href="/#inicio">Volver al curso</a></div></header>
+<main id="contenido" class="section container legal">
+  <p class="eyebrow">INFORMACIÓN LEGAL</p>
+  <h1>{title}</h1>
+  <div class="legal-layout">
+    <nav class="legal-page-nav" aria-label="Navegación legal">
+      <p class="legal-page-nav-title">Documentos</p>
+      {legalLinks.map(([href, label]) => <a href={href} class={currentPath === href ? 'is-current' : undefined} aria-current={currentPath === href ? 'page' : undefined}>{label}</a>)}
+    </nav>
+    <article class="legal-content"><slot/></article>
+  </div>
+</main>
+<footer class="container footer legal-footer"><BrandLogo href="/"/><p>Formación especializada en investigación<br/>digital mediante fuentes abiertas.</p><a href="https://perinfor.odoo.com/contactus?utm_source=landing_osint_abogados&amp;utm_medium=referral&amp;utm_campaign=osint_juridico&amp;utm_content=footer_contactar">Contactar con iTR+ <svg class="arrow-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M5 19 19 5M5 5h14v14"/></svg></a><nav class="footer-legal legal-nav" aria-label="Enlaces legales">{legalLinks.map(([href, label]) => <a href={href} class={currentPath === href ? 'is-current' : undefined} aria-current={currentPath === href ? 'page' : undefined}>{label}</a>)}<button type="button" data-consent-configure>Configurar cookies</button></nav><p class="small">© {new Date().getFullYear()} iTR+</p></footer>
+<CookieNotice/>
+</body></html>
+<style>
+  .legal-layout { display:grid; grid-template-columns:minmax(180px,240px) minmax(0,var(--reading-width)); gap:clamp(32px,7vw,96px); align-items:start; }
+  .legal-page-nav { position:sticky; top:calc(var(--header-h) + 24px); display:grid; gap:8px; border-top:1px solid var(--line); padding-top:16px; }
+  .legal-page-nav-title { margin:0 0 8px; font:500 var(--text-decorative)/1.4 var(--font-display); letter-spacing:.1em; text-transform:uppercase; color:var(--color-text-muted); }
+  .legal-page-nav a { padding:7px 0; color:var(--color-text-muted); text-decoration-thickness:1px; }
+  .legal-page-nav a:hover, .legal-page-nav a.is-current { color:#2563a6; font-weight:600; }
+  .legal-content { max-width:var(--reading-width); }
+  .legal-content > :first-child { margin-top:0; }
+  .legal-content a { color:#163a63; font-weight:500; overflow-wrap:anywhere; }
+  .legal-content a:hover { color:#2563a6; }
+  .legal-nav a.is-current { color:#2563a6; font-weight:600; text-decoration-thickness:2px; }
+  .legal-nav button { color:#163a63; }
+  @media (max-width:760px) {
+    .legal-layout { grid-template-columns:1fr; gap:32px; }
+    .legal-page-nav { position:static; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 18px; }
+    .legal-page-nav-title { grid-column:1 / -1; }
+    .legal-content { max-width:none; }
+  }
+</style>

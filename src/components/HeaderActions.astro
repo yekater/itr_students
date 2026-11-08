@@ -1,0 +1,18 @@
+---
+import {type SupportedLocale} from '../data/locales';
+import {destination} from '../lib/links';
+
+interface Props{locale?:SupportedLocale}
+const {locale='es'}=Astro.props;
+const infoHref=locale==='es'?destination('contact','header_contacto'):destination('contact',`${locale}_header_contacto`);
+const enrollHref='https://perinfor.odoo.com/slides/acreditacion-tecnico-especialista-en-analisis-forense-en-la-web-10?utm_source=landing_osint_abogados&utm_medium=referral&utm_campaign=osint_juridico&utm_content=header';
+const copy={
+ es:{info:'Solicita información del curso',enroll:'Matricularme'},
+ ca:{info:'Sol·licita informació del curs',enroll:'Matricular-me'},
+ en:{info:'Request course information',enroll:'Enroll now'}
+}[locale];
+---
+<div class="header-ctas">
+  <a class="button compact outline" href={infoHref}>{copy.info}</a>
+  <a class="button compact" href={enrollHref}>{copy.enroll}</a>
+</div>

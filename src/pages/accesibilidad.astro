@@ -1,0 +1,25 @@
+﻿---
+import LegalLayout from '../layouts/LegalLayout.astro';
+import {owner} from '../data/legal';
+---
+<LegalLayout title="Accesibilidad" description="Información honesta sobre la accesibilidad del sitio del Curso de investigación digital para estudiantes de iTR+ y canal para comunicar incidencias.">
+  <h2>Estado de la accesibilidad</h2>
+  <p>Este sitio se ha desarrollado con el objetivo técnico WCAG 2.2 AA. Es un objetivo de implementación, no una declaración de conformidad jurídica completa.</p>
+  <h2>Qué se ha comprobado</h2>
+  <ul>
+    <li>HTML semántico, con landmarks, enlace «Saltar al contenido», jerarquía de encabezados coherente y un solo H1 por página.</li>
+    <li>Contraste de texto y controles con azul profundo y superficies claras; foco visible y no oculto por elementos anclados.</li>
+    <li>Recorridos comprobados por teclado en menú móvil, barra de secciones, módulos del programa, FAQ, expediente interactivo y preferencias de cookies (diálogo nativo con Escape y cierre).</li>
+    <li>Alturas de objetivo de control de unos 44 × 44 px y texto funcional desde 16 px.</li>
+    <li>Auditoría automática (axe-core en Playwright) sin violaciones conocidas y revisión manual de plantillas y componentes.</li>
+    <li>Respeto a <code>prefers-reduced-motion</code>: el sitio funciona sin efectos decorativos; no hay vídeos con reproducción automática.</li>
+  </ul>
+  <h2>Qué queda pendiente</h2>
+  <ul>
+    <li>Auditoría por terceros u organismo público de certificación; no la hemos encargado ni podemos afirmarla.</li>
+    <li>Pruebas con usuarios reales de tecnologías de apoyo, y un análisis del encaje de la Ley 11/2023 (microempresas, ámbito del servicio), pendiente de datos del titular.</li>
+  </ul>
+  <h2>Comunicar incidencias</h2>
+  <p>Si encuentras algún obstáculo de acceso, escríbenos: {owner.email ? <> contacto de accesibilidad en <a href={`mailto:${owner.email}?subject=Incidencia%20de%20accesibilidad`}>{owner.email}</a>.</> : ' canal de contacto pendiente de confirmar; puedes comunicar la incidencia en la plataforma corporativa de iTR+.'}</p>
+  <p>Aplicamos mejoras de accesibilidad de forma continua y revisamos las incidencias comunicadas.</p>
+</LegalLayout>

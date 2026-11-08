@@ -1,0 +1,20 @@
+---
+import {careerFaq as spanishFaq} from '../data/career';
+type CareerItem={id:string;question:string;paragraphs:readonly string[];examples:readonly {label:string;text:string}[];skills:readonly string[]};
+const props=Astro.props as {items?:readonly CareerItem[];copy?:{skills:string;note:string};locale?:'es'|'ca'|'en'};
+const translated:Record<'ca'|'en',readonly CareerItem[]>={
+  ca:[{id:'empleabilitat',question:'Com pot ajudar-me el curs a trobar feina o progressar professionalment?',paragraphs:['Pot ajudar-te a mostrar una especialització en la cerca, el contrast i la documentació d’informació pública dins del teu perfil, encara en formació.','El seu valor s’entén millor quan pots explicar què saps fer i mostrar un exemple de treball amb fonts traçables.'],examples:[],skills:[]},{id:'cv-fonts-obertes',question:'Com incorporo el curs i el certificat al meu CV?',paragraphs:['Afegeix-lo a Formació complementària com a «Acreditación Técnico Especialista en Análisis Forense en la Web», amb doble certificació del Col·legi Oficial d’Enginyeria en Informàtica de Catalunya (COEINF) i d’iTR+. Destaca les competències i les tasques pràctiques que has completat durant el curs.'],examples:[],skills:[]},{id:'linkedin-fonts-obertes',question:'Com actualitzo el meu LinkedIn?',paragraphs:['Mantén la teva disciplina en primer pla i afegeix la investigació en fonts obertes com a competència complementària.','Registra el certificat amb el nom i l’emissor exactes quan l’hagis obtingut.'],examples:[],skills:['Investigació en fonts obertes','Cerca avançada d’informació pública','Verificació de fonts']}],
+  en:[{id:'employability',question:'How can the course help me find work or progress professionally?',paragraphs:['It can help you demonstrate specialisation in finding, verifying and documenting public information within your profile while you are still training.','Its value is clearest when you can explain what you can do and show work using traceable sources.'],examples:[],skills:[]},{id:'cv-open-sources',question:'How should I add the course and certificate to my CV?',paragraphs:['Add it under Further training as \u201cAcreditación Técnico Especialista en Análisis Forense en la Web\u201d, with dual certification from the Col·legi Oficial d’Enginyeria en Informàtica de Catalunya (COEINF) and iTR+. Highlight the skills and practical tasks you have completed during the course.'],examples:[],skills:[]},{id:'linkedin-open-sources',question:'How should I update my LinkedIn profile?',paragraphs:['Keep your discipline prominent and add open-source investigation as a complementary skill.','Record the certificate with its exact name and issuer once you have obtained it.'],examples:[],skills:['Open-source investigation','Advanced public-information search','Source verification']}],
+};
+const faqItems=props.items??(props.locale&&props.locale!=='es'?translated[props.locale]:spanishFaq);
+const locale=props.locale??'es';
+const faqCopy=props.copy??(locale==='ca'?{skills:'Aptituds i paraules clau que pots afegir si hi has practicat',note:'Utilitza només aptituds que puguis demostrar; no afegeixis eines ni experiència que no tinguis.'}:locale==='en'?{skills:'Skills and keywords you can add if you have practised them',note:'Only use skills you can demonstrate; do not add tools or experience you do not have.'}:{skills:'Aptitudes y palabras clave que puedes añadir si las has practicado',note:'Utiliza solo aptitudes que puedas demostrar; no añadas herramientas ni experiencia que no tengas.'});
+---
+{faqItems.map(item => <details class="faq-item career-faq" id={item.id}>
+  <summary>{item.question}<span aria-hidden="true">+</span></summary>
+  <div class="faq-answer">
+    {item.paragraphs.map(paragraph => <p>{paragraph}</p>)}
+    {item.examples.length > 0 && <dl class="career-examples">{item.examples.map(example => <><dt>{example.label}</dt><dd>{example.text}</dd></>)}</dl>}
+    {item.skills.length > 0 && <><h3>{faqCopy.skills}</h3><ul class="career-skills">{item.skills.map(skill => <li>{skill}</li>)}</ul><p>{faqCopy.note}</p></>}
+  </div>
+</details>)}

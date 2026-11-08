@@ -1,0 +1,35 @@
+﻿---
+// Política de cookies basada en tecnologías realmente usadas: sin proveedores ficticios.
+import {services} from '../data/services';
+import {owner} from '../data/legal';
+import LegalLayout from '../layouts/LegalLayout.astro';
+---
+<LegalLayout title="Política de cookies" description="Política de cookies conforme a la guía de la AEPD para el Curso de investigación digital para estudiantes de iTR+.">
+  <p>Esta política explica las cookies y tecnologías equivalentes que este sitio usa de verdad, conforme a la Guía sobre el uso de cookies de la AEPD y al art. 22.2 de la LSSI-CE. {owner.email ? <>Dudas: <a href={`mailto:${owner.email}`}>{owner.email}</a>.</> : ''}</p>
+  <h2>Qué usa este sitio hoy</h2>
+  <dl>
+    <dt>Almacenamiento de consentimiento</dt>
+    <dd><code>itr-consent-v1</code>: elemento de localStorage <strong>propio</strong> que registra tu decisión (categorías, versión de finalidades, fecha y caducidad) en tu navegador. No es una cookie y no se envía a ningún servidor. Lo llena el banner cuando eliges aceptar, rechazar o guardar preferencias; lo puedes borrar vaciando los datos del sitio en tu navegador.</dd>
+  </dl>
+  <p>No hay otras claves ni almacenamiento de origen cruzado, y no existe ningún rastreador, píxel ni visualización con cookies de terceros.</p>
+  <h2>Categorías</h2>
+  <dl>
+    <dt>Técnicas (necesarias)</dt><dd>Habilitan la navegación, la seguridad y recordar tu elección sobre las funciones no esenciales. No requieren consentimiento.</dd>
+    <dt>Analítica</dt><dd>Medición anónima del uso de la página (marca como opcional). Hoy este sitio no tiene ningún proveedor de analítica configurado, con lo cual esta categoría está desactivada de todas formas.</dd>
+    <dt>Medios externos</dt><dd>Reproductores o recursos incorporados de terceros que pueden fijar cookies (opcional). Tampoco hay hoy ninguno configurado.</dd>
+    <dt>Marketing / publicidad</dt><dd>Este sitio no usa cookies de marketing ni de compartición con redes sociales.</dd>
+  </dl>
+  {services.length > 0 ? (
+    <dl>
+      {services.map(service => (
+        <div class="legal">
+          <dt>{service.name}</dt><dd>{service.optional ? 'Función opcional.' : ''} {service.purpose}</dd>
+        </div>
+      ))}
+    </dl>
+  ) : null}
+  <h2>Cómo cambiar tu decisión</h2>
+  <p>Usa el control «Configurar cookies» del pie de la página; ahí puedes rehacer tus preferencias. Si usas el navegador <em>privado</em> o el almacenamiento está restringido, la elección se mantiene en memoria para esa visita y no se persiste.</p>
+  <h2>Más información</h2>
+  <p>Consulta la <a href="/politica-de-privacidad/">Política de privacidad</a> para saber cómo se tratan los datos personales de este sitio.</p>
+</LegalLayout>

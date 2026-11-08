@@ -1,0 +1,71 @@
+---
+// Aviso de cookies conforme a la Guía AEPD + diretrices del CEPD: aceptar y rechazar en la
+// misma capa, configuración posterior y retirada accesible desde el pie en todas las páginas.
+// Sin servicios opcionales configurados, el panel lo informa con honestidad.
+import {services} from '../data/services';
+
+const optionalConfigured = services.some(service => service.optional);
+const {locale='es'} = Astro.props;
+const ca=locale==='ca', en=locale==='en';
+const copy=ca ? {label:'Avís de galetes',text:'Aquest lloc només utilitza emmagatzematge estrictament necessari per funcionar i recordar les teves preferències.',policy:'Política de galetes',accept:'Acceptar-les totes',reject:'Rebutjar les no essencials',prefs:'Configurar preferències',title:'Preferències de galetes',intro:'Tria quines funcions no essencials es poden activar en aquest lloc.',technical:'Tècniques (necessàries)',analytics:'Analítica',media:'Mitjans externs',none:'Avui aquest lloc no té cap servei opcional configurat.',save:'Desar preferències',close:'Tancar'} : en ? {label:'Cookie notice',text:'This site only uses strictly necessary storage to work and remember your preferences.',policy:'Cookie policy',accept:'Accept all',reject:'Reject non-essential',prefs:'Configure preferences',title:'Cookie preferences',intro:'Choose which non-essential functions may be enabled on this site.',technical:'Technical (necessary)',analytics:'Analytics',media:'External media',none:'This site currently has no optional service configured.',save:'Save preferences',close:'Close'} : {label:'Aviso de cookies',text:'Este sitio solo usa almacenamiento estrictamente necesario para funcionar y recordar tus preferencias.',policy:'Política de cookies',accept:'Aceptar todas',reject:'Rechazar no esenciales',prefs:'Configurar preferencias',title:'Preferencias de cookies',intro:'Elige qué funciones no esenciales se pueden activar en este sitio.',technical:'Técnicas (necesarias)',analytics:'Analítica',media:'Medios externos',none:'Hoy este sitio no tiene ningún servicio opcional configurado.',save:'Guardar preferencias',close:'Cerrar'};
+const policyHref=locale==='es'?'/politica-de-cookies/':`/${locale}/politica-de-cookies/`;
+---
+<aside id="aviso-cookies" class="cookie-banner" hidden aria-label={copy.label}>
+  <p class="cookie-text">{copy.text} <a href={policyHref}>{copy.policy}</a>.</p>
+  <div class="cookie-actions">
+    <button type="button" data-consent="accept">{copy.accept}</button>
+    <button type="button" data-consent="reject" class="secondary">{copy.reject}</button>
+    <button type="button" data-consent="prefs" class="secondary">{copy.prefs}</button>
+  </div>
+</aside>
+<dialog class="cookie-dialog">
+  <h2>{copy.title}</h2>
+  <p>{copy.intro}</p>
+  <label><input type="checkbox" checked disabled/> <span><strong>{copy.technical}</strong></span></label>
+  <label><input type="checkbox" name="analytics"/> <span><strong>{copy.analytics}</strong></span></label>
+  <label><input type="checkbox" name="externalMedia"/> <span><strong>{copy.media}</strong></span></label>
+  {optionalConfigured ? (
+    <table class="cookie-services">{services.filter(service => service.optional).map(service => <tr><td>{service.name}</td><td>{service.purpose}</td><td>{service.duration}</td></tr>)}</table>
+  ) : (
+    <p class="services-note">{copy.none}</p>
+  )}
+  <div class="cookie-actions" style="margin-top:18px">
+    <button type="button" data-consent="accept-prefs">{copy.save}</button>
+    <button type="button" data-consent="close" class="secondary">{copy.close}</button>
+  </div>
+</dialog>
+<script>
+ import {allows,listenStorage,openPreferences,rejectOptional,save,subscribe,STORAGE_KEY} from '../lib/consent';
+ import {configureAnalytics,testHandler} from '../lib/analytics';
+
+ listenStorage();
+ const banner=document.getElementById('aviso-cookies')!;
+ const dialog=document.querySelector<HTMLDialogElement>('.cookie-dialog');
+ const configureButtons=document.querySelectorAll<HTMLButtonElement>('[data-consent-configure]');
+
+ function hasDecision(){try{return !!localStorage.getItem(STORAGE_KEY);}catch{return true;}}
+ function syncGates(){configureAnalytics(testHandler,allows('analytics'));}
+ function syncUi(){banner.hidden=hasDecision();}
+ function syncPreferences(){
+   if(!dialog)return;
+   dialog.querySelector<HTMLInputElement>('input[name="analytics"]')!.checked=allows('analytics');
+   dialog.querySelector<HTMLInputElement>('input[name="externalMedia"]')!.checked=allows('externalMedia');
+ }
+ function showPreferences(){syncPreferences();openPreferences();}
+ syncGates();syncUi();subscribe(()=>{syncGates();syncUi();});
+
+ banner.querySelectorAll<HTMLButtonElement>('[data-consent]').forEach(button=>button.addEventListener('click',event=>{
+   const action=(event.currentTarget as HTMLElement).dataset.consent;
+   if(action==='accept')save({analytics:true,marketing:true,externalMedia:true});
+   else if(action==='reject')rejectOptional();
+    else if(action==='prefs')showPreferences();
+   if(action!=='prefs')syncUi();
+ }));
+  configureButtons.forEach(button=>button.addEventListener('click',showPreferences));
+ dialog?.querySelectorAll<HTMLButtonElement>('[data-consent]').forEach(button=>button.addEventListener('click',event=>{
+   const action=(event.currentTarget as HTMLElement).dataset.consent;
+   const categories={analytics:!!dialog.querySelector<HTMLInputElement>('input[name="analytics"]')?.checked,marketing:false,externalMedia:!!dialog.querySelector<HTMLInputElement>('input[name="externalMedia"]')?.checked};
+   if(action==='accept-prefs')save(categories);
+   if(action==='close')dialog.close();
+ }));
+</script>

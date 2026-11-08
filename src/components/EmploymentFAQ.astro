@@ -1,0 +1,71 @@
+---
+import {employmentEvidence as evidence} from '../data/employment-evidence';
+
+const {locale='es'}=Astro.props;
+const bls = evidence.metrics.find(metric => metric.id === 'bls-isa')!;
+const uk = evidence.metrics.find(metric => metric.id === 'uk-dsit-2025')!;
+const ca=locale==='ca', en=locale==='en';
+const items = ca ? [
+  {id:'estadisticas-empleo',q:'Quines xifres recents hi ha sobre la demanda i què signifiquen per a aquest curs?',
+   intro:'Aquestes dades aporten context del mercat i dels riscos digitals, amb el seu territori i període declarats. No mesuren l’ocupació de persones amb aquesta formació a Espanya ni els resultats del curs iTR+.',
+   tail:'Fonts consultades el {checked}. Les projeccions i els anuncis publicats en un període no són un comptador d’ofertes disponibles en aquest moment.',
+   tail2:'No disposam d’una xifra verificada que aïlli les vacants de persones amb aquesta formació a Espanya ni una taxa de contractació d’alumnes d’aquest curs. Per això no extrapolem aquestes dades a una promesa d’ocupació.',
+   fuente:'Font: '},
+  {id:'certificado-empleo',q:'Què aporta el certificat en un procés de selecció?',
+   p1:'El BLS assenyala que, en llocs d’analista de seguretat de la informació, els ocupadors poden preferir candidats amb una certificació professional. L’informe britànic també descriu la formació especialitzada i les certificacions com a vies per demostrar competències. Són observacions generals del sector, no una avaluació del certificat d’iTR+.',
+   p2:'Al teu CV i LinkedIn, utilitza el certificat per explicar què has estudiat i acompanya’l de competències i exemples que puguis demostrar. La selecció depèn també de la teva experiència, el teu perfil i els requisits de cada lloc.',
+   sources:['BLS: requisits i certificació professional per a analistes de seguretat','Govern britànic / DSIT 2026: formació i certificacions, apartat 5.3']},
+] : en ? [
+  {id:'estadisticas-empleo',q:'What recent figures exist about demand, and what do they mean for this course?',
+   intro:'These data provide market context and digital risk context, with their declared territory and period. They do not measure the employment of people with this training in Spain nor the results of the iTR+ course.',
+   tail:'Sources consulted on {checked}. Projections and announcements published in a period are not a counter of vacancies currently available.',
+   tail2:'We have no verified figure that isolates vacancies for people with this training in Spain, nor a hiring rate for students of this course. That is why we do not extrapolate these data into an employment promise.',
+   fuente:'Source: '},
+  {id:'certificado-empleo',q:'What does the certificate contribute in a selection process?',
+   p1:'The BLS notes that, for information security analyst roles, employers may prefer candidates with a professional certification. The British report also describes specialised training and certifications as ways to demonstrate competence. These are general sector observations, not an evaluation of the iTR+ certificate.',
+   p2:'In your CV and LinkedIn, use the certificate to explain what you have studied and accompany it with skills and examples you can demonstrate. Selection also depends on your experience, your profile and the requirements of each role.',
+   sources:['BLS: requirements and professional certification for security analysts','UK Government / DSIT 2026: training and certifications, section 5.3']},
+] : [
+  {id:'estadisticas-empleo',q:'¿Qué cifras recientes hay sobre la demanda y qué significan para este curso?',
+   intro:'Estos datos aportan contexto del mercado y de los riesgos digitales, con su territorio y periodo declarados. No miden el empleo de personas con esta formación en España ni los resultados del curso iTR+.',
+   tail:'Fuentes consultadas el {checked}. Las proyecciones y los anuncios publicados en un periodo no son un contador de ofertas disponibles en este momento.',
+   tail2:'No disponemos de una cifra verificada que aísle las vacantes de personas con esta formación en España ni una tasa de contratación de alumnos de este curso. Por eso no extrapolamos estos datos a una promesa de empleo.',
+   fuente:'Fuente: '},
+  {id:'certificado-empleo',q:'¿Qué aporta el certificado en un proceso de selección?',
+   p1:'El BLS señala que, en puestos de analista de seguridad de la información, los empleadores pueden preferir candidatos con una certificación profesional. El informe británico también describe la formación especializada y las certificaciones como vías para demostrar competencias. Son observaciones generales del sector, no una evaluación del certificado de iTR+.',
+   p2:'En tu CV y LinkedIn, utiliza el certificado para explicar qué has estudiado y acompáñalo de competencias y ejemplos que puedas demostrar. La selección depende también de tu experiencia, tu perfil y los requisitos de cada puesto.',
+   sources:['BLS: requisitos y certificación profesional para analistas de seguridad','Gobierno británico / DSIT 2026: formación y certificaciones, apartado 5.3']},
+];
+const [statsItem, certItem] = items as {[k:string]:any}[];
+const tail = statsItem.tail.replace('{checked}', evidence.checkedAt);
+---
+<details class="faq-item career-faq" id="estadisticas-empleo">
+  <summary>{statsItem.q}<span aria-hidden="true">+</span></summary>
+  <div class="faq-answer">
+    <p>{statsItem.intro}</p>
+    <div class="employment-evidence">
+      <article class="employment-metric">
+        <h3><span>{bls.displayValue}</span> {bls.claim}</h3>
+        <p class="employment-scope">{bls.geography} · {bls.period} · {bls.unit}</p>
+        <p>{bls.scopeNote}</p>
+        <a href={bls.sourceUrl}>{statsItem.fuente}{bls.sourceName}</a>
+      </article>
+      <article class="employment-metric">
+        <h3><span>{uk.displayValue}</span> {uk.claim}</h3>
+        <p class="employment-scope">{uk.geography} · {uk.period} · {uk.unit}</p>
+        <p>{uk.scopeNote}</p>
+        <a href={uk.sourceUrl}>{statsItem.fuente}{uk.sourceName}</a>
+      </article>
+    </div>
+    <p>{tail}</p>
+    <p>{statsItem.tail2}</p>
+  </div>
+</details>
+<details class="faq-item career-faq" id="certificado-empleo">
+  <summary>{certItem.q}<span aria-hidden="true">+</span></summary>
+  <div class="faq-answer">
+    <p>{certItem.p1}</p>
+    <p>{certItem.p2}</p>
+    <ul class="employment-sources"><li><a href={bls.sourceUrl}>{certItem.sources[0]}</a></li><li><a href={uk.sourceUrl}>{certItem.sources[1]}</a></li></ul>
+  </div>
+</details>

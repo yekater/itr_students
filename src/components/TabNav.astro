@@ -1,0 +1,20 @@
+---
+// Navegación de secciones con aspecto de pestañas: enlaces ancla reales en una página
+// continua; sin role="tablist" porque solo desplazan la página.
+const spanishOptions = [
+  ['Descripción y Método didáctico', '#metodo'],
+  ['Contenido', '#programa'],
+  ['Dirigido a', '#para-quien'],
+  ['Certificado', '#certificacion'],
+  ['Salidas laborales', '#salidas-laborales'],
+  ['FAQ', '#preguntas'],
+  ['Prueba gratuita', '#probar'],
+] as const;
+type Props={options?:readonly (readonly [string,string])[];ariaLabel?:string};
+const {options=spanishOptions, ariaLabel='Orden del curso a lo largo de la página'}:Props = Astro.props;
+---
+<nav class="tabnav" aria-label={ariaLabel} data-intro="Opciones del curso">
+  <div class="container tabnav-list">
+    {options.map(([label, href]) => <a href={href} data-tab={href}>{label}</a>)}
+  </div>
+</nav>

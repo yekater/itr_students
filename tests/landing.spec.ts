@@ -8,7 +8,7 @@ test('HTML completo, mapa de IDs y PDF sin JavaScript',async({browser,request})=
  const page=await context.newPage();
  await page.goto('/');
  await expect(page.locator('h1')).toHaveCount(1);
- await expect(page.locator('h1')).toContainText('Descubre cómo aportar pruebas');
+ await expect(page.locator('h1')).toContainText('Descubre cómo añadir a tu CV');
  // Siete módulos con lecciones reales (sin acrónimo)
  await page.locator('[data-module]').first().locator('summary').click();
  await expect(page.getByText('¿Qué es la investigación digital?',{exact:false}).first()).toBeVisible();
@@ -47,7 +47,7 @@ test('siete opciones de curso con destinos correctos',async({page})=>{
   await expect(page.locator('#metodo')).toContainText('De la primera búsqueda');
   await expect(page.locator('.metodo-group')).toContainText('Rigor en el método');
  await expect(page.locator('#programa')).toContainText('Tu programa de investigación');
-  await expect(page.locator('#para-quien')).toContainText('Investigación digital para reforzar tu práctica jurídica');
+  await expect(page.locator('#para-quien')).toContainText('A quién va dirigido');
   await expect(page.locator('#certificacion')).toContainText('Doble Certificación Oficial: iTR+ y COEINF');
  await expect(page.locator('#salidas-laborales h2')).toContainText('Salidas laborales');
  await expect(page.locator('#preguntas')).toContainText('Preguntas');
@@ -110,7 +110,7 @@ test('planificador: estimación orientativa y entradas inválidas',async({page})
   await expect.poll(async()=>{
     await planner.fill('');
     await planner.fill('10');
-    return (await page.locator('.planner').innerText()).includes('6 semanas');
+    return (await page.locator('.planner').innerText()).includes('3 semanas');
   },{timeout:10000}).toBe(true);
   await expect.poll(async()=>{
     await planner.fill('');
@@ -120,7 +120,7 @@ test('planificador: estimación orientativa y entradas inválidas',async({page})
   await expect.poll(async()=>{
     await planner.fill('');
     await planner.fill('60');
-    return (await page.locator('.planner').innerText()).includes('1 seman');
+    return (await page.locator('.planner').innerText()).includes('hasta 30');
   },{timeout:10000}).toBe(true);
 });
 
@@ -176,7 +176,7 @@ test('SEO: título, descripción, canonical y frases aprobadas sin acrónimo',as
  expect(title).not.toContain('OSINT');
   expect((await page.locator('body').innerText()).toLowerCase()).not.toContain('osint');
  const text=(await page.locator('body').textContent())!.toLowerCase();
-  for(const phrase of ['investigación digital para abogados','investigación de sociedades mercantiles','análisis de huella digital','investigación en redes sociales','inteligencia de fuentes abiertas','búsqueda avanzada de información pública'])expect(text).toContain(phrase.toLowerCase());
+  for(const phrase of ['investigación digital para estudiantes','investigación de sociedades mercantiles','análisis de huella digital','investigación en redes sociales','inteligencia de fuentes abiertas','búsqueda avanzada de información pública'])expect(text).toContain(phrase.toLowerCase());
  expect(html).toContain('noindex,follow');
  expect(text).not.toContain('presencial');
 });
@@ -204,12 +204,12 @@ test('hero: composición aprobada, recorte sin marco y LCP sin animación antigu
   await expect(video).toHaveAttribute('playsinline','');
   await expect(video).toHaveAttribute('loop','');
   await expect(video).toHaveAttribute('poster','/images/hero-investigation-video-poster.webp');
-  await expect(video.locator('source')).toHaveAttribute('src','/videos/hero-investigation-silent.mp4');
+  await expect(video.locator('source')).toHaveAttribute('src','/videos/itr-estudiantes.mp4');
   await expect(page.locator('[data-card]')).toHaveCount(0);
   await expect(page.locator('.hero-scene-svg')).toHaveCount(0);
   await expect(page.locator('.hero-scene .hs-people')).toHaveCount(0);
   await expect(page.locator('[data-scene-toggle]')).toHaveCount(0);
-   await expect(page.locator('#inicio')).toContainText('Contratar');
+   await expect(page.locator('#inicio')).toContainText('Matricularme');
 });
 
 test('páginas legales: rutas, enlace del header y navegación de vuelta',async({request})=>{

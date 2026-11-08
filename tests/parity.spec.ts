@@ -1,16 +1,16 @@
 import {test, expect} from '@playwright/test';
 
 const locales = [
-  {route:'/', lang:'es', weeks:'12 semanas de dedicación', hours:'Horas de estudio por semana', competency:'Formación en técnicas', faqFirst:'¿Necesito conocimientos previos?', acceptAll:'Aceptar todas', cookieLabel:'Aviso de cookies', demoTitle:'Una relación que conviene verificar', addBtn:'Añadir al expediente', exp:'Expediente'},
-  {route:'/ca/', lang:'ca', weeks:'12 setmanes de dedicació', hours:'Hores d’estudi per setmana', competency:'Formació en tècniques', faqFirst:'Necessito coneixements previs?', acceptAll:'Acceptar-les totes', cookieLabel:'Avís de galetes', demoTitle:'Una relació que convé verificar', addBtn:'Afegir a l’expedient', exp:'Expedient'},
-  {route:'/en/', lang:'en', weeks:'12 weeks of estimated study', hours:'Study hours per week', competency:'Training in digital investigation techniques', faqFirst:'Do I need prior knowledge?', acceptAll:'Accept all', cookieLabel:'Cookie notice', demoTitle:'A relationship worth verifying', addBtn:'Add to case file', exp:'Case file'},
+  {route:'/', lang:'es', weeks:'6 semanas de dedicación', hours:'Horas de estudio por semana', competency:'Formación en técnicas', faqFirst:'¿Necesito conocimientos previos?', acceptAll:'Aceptar todas', cookieLabel:'Aviso de cookies', demoTitle:'Una relación que conviene verificar', addBtn:'Añadir al expediente', exp:'Expediente'},
+  {route:'/ca/', lang:'ca', weeks:'6 setmanes de dedicació', hours:'Hores d’estudi per setmana', competency:'Formació en tècniques', faqFirst:'Necessito coneixements previs?', acceptAll:'Acceptar-les totes', cookieLabel:'Avís de galetes', demoTitle:'Una relació que convé verificar', addBtn:'Afegir a l’expedient', exp:'Expedient'},
+  {route:'/en/', lang:'en', weeks:'6 weeks of estimated study', hours:'Study hours per week', competency:'Training in digital investigation techniques', faqFirst:'Do I need prior knowledge?', acceptAll:'Accept all', cookieLabel:'Cookie notice', demoTitle:'A relationship worth verifying', addBtn:'Add to case file', exp:'Case file'},
 ];
 
 for (const L of locales) {
   test(`parity: calculator, FAQ, competencies, cookies ${L.lang}`, async ({page}) => {
     await page.goto(L.route, {waitUntil:'networkidle'});
 
-    // 1. Calculator: 5 hours/week -> 12 weeks in every language
+    // 1. Calculator: 5 hours/week -> 6 weeks in every language
     const planner = page.locator('.planner');
     await planner.scrollIntoViewIfNeeded();
     await planner.locator('input#hours').fill('5');
@@ -73,7 +73,7 @@ for (const L of locales) {
     const planner = page.locator('.planner');
     await planner.scrollIntoViewIfNeeded();
     await planner.locator('input#hours').fill('5');
-    await expect(planner.locator('p[aria-live="polite"] strong')).toContainText('12', {ignoreCase:false});
+    await expect(planner.locator('p[aria-live="polite"] strong')).toContainText('6', {ignoreCase:false});
     await expect(await page.locator('#preguntas details.faq-item').count()).toBe(16);
   });
 }

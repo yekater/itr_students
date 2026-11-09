@@ -4,10 +4,10 @@
 // periodo, unidad y límite declarados, y cinco salidas cualitativas abiertas.
 import {Picture} from 'astro:assets';
 import {employmentEvidence as evidence} from '../data/employment-evidence';
-import careersCybersecurity from '../assets/careers/careers-cybersecurity.jpg';
+import careersCybersecurity from '../assets/careers/glitch-cibernetico.png';
 import careersGlobal from '../assets/careers/careers-global.jpg';
-import careersLegalTech from '../assets/careers/careers-legal-tech.jpg';
-import careersProfessional from '../assets/careers/careers-professional.jpg';
+import careersLegalTech from '../assets/careers/analistas-seguridad.png';
+import careersProfessional from '../assets/careers/ciberseguridad.png';
 
 const kindLabels = {observed: 'dato observado', projection: 'proyección', survey: 'encuesta'} as const;
 const {locale='es'}=Astro.props;
@@ -48,7 +48,7 @@ const salidas = [
             <span class="salida-region">{metric.geography} · {kindLabels[metric.kind]}</span>
             <h3><span>{metric.displayValue}</span> {metric.claim}</h3>
             <p class="salida-scope">{metric.geography} · {metric.period} · unidad: {metric.unit}</p>
-            <p>{metric.scopeNote}</p>
+            {metric.id !== 'uk-dsit-2025' && <p>{metric.scopeNote}</p>}
             <a href={metric.sourceUrl}>Fuente: {metric.sourceName}</a>
           </article>
         ))}

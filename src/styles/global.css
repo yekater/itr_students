@@ -322,12 +322,12 @@ li { margin-bottom: 8px; }
 .learning-grid article { position: relative; isolation: isolate; min-height: 285px; overflow: hidden; border: 1px solid #587995; border-radius: 10px; padding: 24px; color: white; background: linear-gradient(145deg, #163a63, #0b1f3a); }
 .learning-grid article::before { content: ''; position: absolute; inset: 0; z-index: -2; background-image: var(--method-image, url('/images/equipo-abogados-investigacion-digital-itr.jpg')); background-position: center; background-size: cover; filter: saturate(.78); }
 .learning-grid article::after { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(7, 28, 52, .82), rgba(7, 28, 52, .42) 48%, rgba(7, 28, 52, .92)); }
-.learning-grid article:nth-child(1)::before { background-image: url('/images/competency-overview.jpg'); }
+.learning-grid article:nth-child(1)::before { background-image: url('/images/metodologia-fuentes-abiertas.jpg'); }
 .learning-grid article:nth-child(2)::before { background-image: url('/images/competency-search.jpg'); }
 .learning-grid article:nth-child(3)::before { background-image: url('/images/competency-identities.jpg'); }
-.learning-grid article:nth-child(4)::before { background-image: url('/images/competency-companies.jpg'); }
+.learning-grid article:nth-child(4)::before { background-image: url('/images/investigacion-societaria.png'); }
 .learning-grid article:nth-child(5)::before { background-image: url('/images/careers-cybersecurity.jpg'); }
-.learning-grid article:nth-child(6)::before { background-image: url('/images/competency-reports.jpg'); }
+.learning-grid article:nth-child(6)::before { background-image: url('/images/geolocation.png'); }
 .learning-grid h3 { font-size: 1.25rem; letter-spacing: -.02em; }
 .learning-grid p { font-size: var(--text-body); color: #eaf5fd; }
 .competencies-section { margin-top: 64px; padding-top: 42px; border-top: 1px solid var(--line); }

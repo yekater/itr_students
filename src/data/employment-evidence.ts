@@ -30,7 +30,7 @@ export const employmentEvidence = {
       sourceUrl: 'https://www.incibe.es/incibe/sala-de-prensa/incibe-detecto-mas-de-122000-incidentes-de-ciberseguridad-en-2025',
       publishedAt: '2026',
       checkedAt: '25 de octubre de 2026',
-      scopeNote: 'Contexto de riesgos digitales que atraviesan empresas e instituciones, también relevantes para tu futuro laboral: no cuenta empleos ni contrataciones.',
+      scopeNote: 'Contexto de riesgos digitales que atraviesan empresas e instituciones, también relevantes para tu futuro laboral.',
     },
     {
       id: 'wef-jobs-2025',
@@ -44,7 +44,7 @@ export const employmentEvidence = {
       sourceUrl: 'https://www.weforum.org/publications/the-future-of-jobs-report-2025/',
       publishedAt: '2025',
       checkedAt: '25 de octubre de 2026',
-      scopeNote: 'Encuesta a más de mil empleadores sobre la transformación de las competencias profesionales: no mide la inserción laboral de personas con esta formación ni los resultados de este curso.',
+      scopeNote: 'Encuesta a más de mil empleadores sobre la transformación de las competencias profesionales.',
     },
     {
       id: 'bls-isa',

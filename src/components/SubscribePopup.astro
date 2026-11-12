@@ -1,0 +1,175 @@
+---
+const odooUrl = import.meta.env.PUBLIC_ODOO_SUBSCRIBE_URL || '';
+type Locale = 'es' | 'ca' | 'en';
+const {locale = 'es'} = Astro.props as {locale?: Locale};
+const copy = {
+  es: {
+    badge: 'FORMACIÓN EN INVESTIGACIÓN DIGITAL',
+    title: '¿QUIERES ESPECIALIZARTE<br/>EN INVESTIGACIÓN DIGITAL?',
+    strong: '¡Déjanos tu email!',
+    line1: 'Recibe más información sobre la formación para estudiantes,',
+    line2: 'novedades y <strong>descuentos exclusivos</strong>.',
+    placeholder: 'Tu correo electrónico',
+    cta: 'QUIERO MÁS INFORMACIÓN',
+    note: 'No te pierdas ninguna novedad sobre la formación.',
+    emailLabel: 'Correo electrónico',
+    close: 'Cerrar',
+    errorMsg: 'No hemos podido enviar tu email. Inténtalo de nuevo.',
+    okMsg: '¡Gracias! Te escribiremos muy pronto.',
+  },
+  ca: {
+    badge: 'FORMACIÓ EN INVESTIGACIÓ DIGITAL',
+    title: 'ET VOLDRIES<br/>FER EL CURS?',
+    strong: 'Deixa’ns el teu email!',
+    line1: 'Rep més informació sobre la formació,',
+    line2: 'novetats i <strong>descomptes exclusius</strong>.',
+    placeholder: 'El teu correu electrònic',
+    cta: 'VULL MÉS INFORMACIÓ',
+    note: 'No et perdis cap novetat sobre la formació.',
+    emailLabel: 'Correu electrònic',
+    close: 'Tancar',
+    errorMsg: 'No hem pogut enviar el teu email. Torna-ho a provar.',
+    okMsg: 'Gràcies! T’escriurem molt aviat.',
+  },
+  en: {
+    badge: 'TRAINING IN DIGITAL INVESTIGATION',
+    title: 'WOULD YOU LIKE<br/>TO TAKE THE COURSE?',
+    strong: 'Leave us your email!',
+    line1: 'Get more information about the training,',
+    line2: 'updates and <strong>exclusive discounts</strong>.',
+    placeholder: 'Your email address',
+    cta: 'I WANT MORE INFORMATION',
+    note: 'Don’t miss any news about the training.',
+    emailLabel: 'Email address',
+    close: 'Close',
+    errorMsg: 'We couldn’t send your email. Please try again.',
+    okMsg: 'Thanks! We’ll be in touch very soon.',
+  },
+}[locale];
+---
+<aside id="sub-popup" class="sub-popup" hidden aria-hidden="true">
+  <div class="sub-popup-backdrop" data-sub-close></div>
+  <div class="sub-popup-card" role="dialog" aria-modal="true" aria-labelledby="sub-popup-title">
+    <button type="button" class="sub-popup-close" data-sub-close aria-label={copy.close}>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <img class="sub-popup-img" src="/images/popup-formacion-investigacion-digital.png" alt="" width="1368" height="700" loading="lazy"/>
+    <div class="sub-popup-body">
+      <p class="sub-popup-badge">{copy.badge}</p>
+      <h2 id="sub-popup-title" class="sub-popup-title" set:html={copy.title}/>
+      <p class="sub-popup-lead">{copy.strong}</p>
+      <p class="sub-popup-text">{copy.line1}<br/><Fragment set:html={copy.line2}/></p>
+      <form class="sub-popup-form" novalidate data-sub-form data-odoo-url={odooUrl} data-ok-msg={copy.okMsg} data-error-msg={copy.errorMsg}>
+        <label class="sub-popup-field">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v12H3z"/><path d="m3 7 9 6 9-6"/></svg>
+          <input type="email" name="email_from" required placeholder={copy.placeholder} autocomplete="email" aria-label={copy.emailLabel}/>
+        </label>
+        <input type="hidden" name="name" value=""/>
+        <input type="hidden" name="description" value={`Suscripción popup landing estudiantes (${locale.toUpperCase()})`}/>
+        <input type="hidden" name="utm_source" value="popup_landing"/>
+        <input type="hidden" name="utm_medium" value="exit_intent_scroll"/>
+        <input type="hidden" name="source" value="web"/>
+        <button type="submit" class="sub-popup-cta">{copy.cta} <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+        <p class="sub-popup-msg" data-sub-msg role="status"></p>
+      </form>
+      <p class="sub-popup-note">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+        {copy.note}
+      </p>
+    </div>
+  </div>
+</aside>
+<script>
+  import {track} from '../lib/analytics';
+  const KEY='sub_popup_done';
+  const SHOWN='sub_popup_shown';
+  const popup=document.getElementById('sub-popup')!;
+  {
+    const form=popup.querySelector<HTMLFormElement>('[data-sub-form]');
+    const msg=popup.querySelector<HTMLElement>('[data-sub-msg]');
+    const input=popup.querySelector<HTMLInputElement>('input[type="email"]');
+    const nameInput=popup.querySelector<HTMLInputElement>('input[name="name"]');
+    let open=false;
+    let trigger='scroll';
+    function show(){
+      if(open||sessionStorage.getItem(SHOWN)||localStorage.getItem(KEY))return;
+      open=true;
+      sessionStorage.setItem(SHOWN,'1');
+      popup.hidden=false;popup.setAttribute('aria-hidden','false');
+      document.documentElement.classList.add('sub-popup-open');
+      input?.focus();
+      track('subscribe_popup_show',{trigger});
+    }
+    function close(subscribed=false){
+      if(!open)return;
+      open=false;
+      popup.hidden=true;popup.setAttribute('aria-hidden','true');
+      document.documentElement.classList.remove('sub-popup-open');
+      if(subscribed)localStorage.setItem(KEY,'1');
+      track('subscribe_popup_close',{subscribed:String(subscribed)});
+    }
+    function maybeShow(t:string){trigger=t;show()}
+    window.addEventListener('scroll',()=>{
+      const doc=document.documentElement;
+      const depth=(window.scrollY+window.innerHeight)/Math.max(doc.scrollHeight,1);
+      if(depth>=.35)maybeShow('scroll');
+    },{passive:true});
+    document.documentElement.addEventListener('mouseleave',e=>{
+      if(e.clientY<=0)maybeShow('exit_intent');
+    });
+    popup.addEventListener('click',e=>{if((e.target as HTMLElement).closest('[data-sub-close]'))close()});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
+    form?.addEventListener('submit',async e=>{
+      e.preventDefault();
+      if(!input?.value||!input.checkValidity()){msg&&(msg.textContent='',msg.hidden=false);return}
+      const btn=form.querySelector<HTMLButtonElement>('.sub-popup-cta');
+      btn&&(btn.disabled=true);
+      nameInput&&(nameInput.value=input.value);
+      const url=form.dataset.odooUrl||'';
+      const fields=new URLSearchParams(new FormData(form) as any);
+      try{
+        if(url){
+          const res=await fetch(url,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:fields});
+          if(!res.ok)throw new Error(String(res.status));
+        }else{
+          console.warn('[sub-popup] PUBLIC_ODOO_SUBSCRIBE_URL no configurado; lead no enviado a Odoo CRM');
+        }
+        msg&&(msg.textContent=form.dataset.okMsg||'',msg.hidden=false);
+        track('subscribe_submit',{destination_type:'odoo_crm'});
+        localStorage.setItem(KEY,'1');
+        setTimeout(()=>close(true),2500);
+      }catch{
+        msg&&(msg.textContent=form.dataset.errorMsg||'',msg.hidden=false);
+        btn&&(btn.disabled=false);
+        track('subscribe_error',{destination_type:'odoo_crm'});
+      }
+    });
+  }
+</script>
+<style>
+  .sub-popup{position:fixed;inset:0;z-index:1200;display:grid;place-items:center;padding:20px;}
+  .sub-popup[hidden]{display:none;}
+  .sub-popup-backdrop{position:absolute;inset:0;background:rgba(11,31,58,.62);backdrop-filter:blur(2px);}
+  .sub-popup-card{position:relative;width:min(480px,100%);max-height:calc(100vh - 40px);overflow:auto;background:#fff;border-radius:14px;box-shadow:0 24px 64px rgba(11,31,58,.4);animation:sub-pop .28s cubic-bezier(.2,.9,.3,1.2);}
+  @keyframes sub-pop{from{transform:translateY(24px) scale(.96);opacity:0}to{transform:none;opacity:1}}
+  @media (prefers-reduced-motion: reduce){.sub-popup-card{animation:none}}
+  .sub-popup-close{position:absolute;top:10px;right:10px;z-index:2;width:38px;height:38px;display:grid;place-items:center;border:2px solid rgba(255,255,255,.9);border-radius:50%;background:rgba(11,31,58,.55);color:#fff;cursor:pointer;}
+  .sub-popup-close svg{width:16px;height:16px;stroke:currentColor;stroke-width:2;fill:none;}
+  .sub-popup-img{display:block;width:100%;height:auto;aspect-ratio:2/1;object-fit:cover;border-radius:14px 14px 0 0;}
+  .sub-popup-body{padding:20px 24px 26px;text-align:center;}
+  .sub-popup-badge{display:inline-block;font-family:var(--font-display);font-size:.8rem;letter-spacing:.08em;font-weight:500;color:#fff;background:#0e2846;border-radius:999px;padding:8px 18px;margin:-26px auto 10px;position:relative;}
+  .sub-popup-title{font-family:var(--font-display);font-weight:600;letter-spacing:-.02em;font-size:clamp(1.6rem,5vw,2rem);line-height:1.1;color:#0e2846;margin:0 0 6px;}
+  .sub-popup-lead{font-family:var(--font-display);font-weight:600;font-size:1.25rem;color:#0e2846;margin:0 0 6px;}
+  .sub-popup-text{font-size:1rem;line-height:1.5;color:var(--color-text-muted,#485d72);margin:0 0 18px;}
+  .sub-popup-text strong{color:#0e2846;}
+  .sub-popup-field{display:flex;align-items:center;gap:10px;border:1.5px solid #c9d6e2;border-radius:10px;padding:12px 14px;margin-bottom:12px;}
+  .sub-popup-field:focus-within{border-color:#2563a6;}
+  .sub-popup-field svg{width:20px;height:20px;stroke:#7a8ea3;stroke-width:1.8;fill:none;flex-shrink:0;}
+  .sub-popup-field input{border:0;outline:0;width:100%;font:inherit;font-size:1rem;color:#0b1f3a;background:transparent;}
+  .sub-popup-cta{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;font-family:var(--font-display);font-weight:600;letter-spacing:.04em;font-size:1rem;color:#fff;background:#0e2846;border:0;border-radius:10px;padding:14px 18px;cursor:pointer;transition:background .15s;}
+  .sub-popup-cta:hover{background:#163a63;}
+  .sub-popup-cta svg{width:18px;height:18px;stroke:currentColor;stroke-width:2;fill:none;}
+  .sub-popup-msg{margin:10px 0 0;font-size:.9rem;color:#b3541e;}
+  .sub-popup-note{display:flex;align-items:center;justify-content:center;gap:8px;font-size:.875rem;color:#485d72;margin:16px 0 0;}
+  .sub-popup-note svg{width:16px;height:16px;stroke:#485d72;stroke-width:1.8;fill:none;}
+</style>

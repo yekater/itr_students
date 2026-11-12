@@ -1,5 +1,5 @@
-type EventName='cta_info_click'|'course_platform_click'|'demo_start'|'demo_complete'|'program_open'|'faq_open';
-type Parameters=Partial<Record<'cta_id'|'section_id'|'destination_type'|'module_id'|'demo_step'|'campaign',string>>;
+type EventName='cta_info_click'|'course_platform_click'|'demo_start'|'demo_complete'|'program_open'|'faq_open'|'subscribe_popup_show'|'subscribe_popup_close'|'subscribe_submit'|'subscribe_error';
+type Parameters=Partial<Record<'cta_id'|'section_id'|'destination_type'|'module_id'|'demo_step'|'campaign'|'trigger'|'subscribed',string>>;
 type Handler=(event:EventName,parameters:Parameters)=>void;
 let adapter:Handler|undefined;
 export function configureAnalytics(handler:Handler,consent:boolean){adapter=consent?handler:undefined;}

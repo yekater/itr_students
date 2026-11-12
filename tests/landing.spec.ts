@@ -67,6 +67,7 @@ test('probar: una sola instancia del caso, mapa de fuentes y pregunta simulada',
 });
 
 test('caso guiado: rutas, procedencia de F03, conclusión y miniinforme real',async({page})=>{
+  await page.addInitScript(()=>sessionStorage.setItem('sub_popup_shown','1'));
   await page.goto('/');
   await page.locator('#probar').scrollIntoViewIfNeeded();
   // Etapa 1: localizar F01 y añadir su extracto. La isla se hidrata al ser visible:

@@ -45,6 +45,7 @@ for (const L of locales) {
   });
 
   test(`parity: investigation demo end-to-end ${L.lang}`, async ({page}) => {
+    await page.addInitScript(()=>sessionStorage.setItem('sub_popup_shown','1'));
     await page.goto(L.route + '#probar', {waitUntil:'networkidle'});
     const demo = page.locator('.probar-app');
     await demo.scrollIntoViewIfNeeded();

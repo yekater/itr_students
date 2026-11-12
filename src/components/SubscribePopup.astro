@@ -1,5 +1,4 @@
 ---
-const odooUrl = import.meta.env.PUBLIC_ODOO_SUBSCRIBE_URL || '';
 type Locale = 'es' | 'ca' | 'en';
 const {locale = 'es'} = Astro.props as {locale?: Locale};
 const copy = {
@@ -15,7 +14,7 @@ const copy = {
     emailLabel: 'Correo electrónico',
     close: 'Cerrar',
     errorMsg: 'No hemos podido enviar tu email. Inténtalo de nuevo.',
-    okMsg: '¡Gracias! Te escribiremos muy pronto.',
+    okMsg: 'Solicitud enviada. No podemos confirmar su recepción en este momento.',
   },
   ca: {
     badge: 'FORMACIÓ EN INVESTIGACIÓ DIGITAL',
@@ -29,7 +28,7 @@ const copy = {
     emailLabel: 'Correu electrònic',
     close: 'Tancar',
     errorMsg: 'No hem pogut enviar el teu email. Torna-ho a provar.',
-    okMsg: 'Gràcies! T’escriurem molt aviat.',
+    okMsg: 'Sol·licitud enviada. No podem confirmar-ne la recepció en aquest moment.',
   },
   en: {
     badge: 'TRAINING IN DIGITAL INVESTIGATION',
@@ -43,7 +42,7 @@ const copy = {
     emailLabel: 'Email address',
     close: 'Close',
     errorMsg: 'We couldn’t send your email. Please try again.',
-    okMsg: 'Thanks! We’ll be in touch very soon.',
+    okMsg: 'Request sent. We cannot confirm its receipt at this time.',
   },
 }[locale];
 ---
@@ -59,16 +58,11 @@ const copy = {
       <h2 id="sub-popup-title" class="sub-popup-title" set:html={copy.title}/>
       <p class="sub-popup-lead">{copy.strong}</p>
       <p class="sub-popup-text">{copy.line1}<br/><Fragment set:html={copy.line2}/></p>
-      <form class="sub-popup-form" novalidate data-sub-form data-odoo-url={odooUrl} data-ok-msg={copy.okMsg} data-error-msg={copy.errorMsg}>
+      <form class="sub-popup-form" data-sub-form data-ok-msg={copy.okMsg} data-error-msg={copy.errorMsg}>
         <label class="sub-popup-field">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v12H3z"/><path d="m3 7 9 6 9-6"/></svg>
-          <input type="email" name="email_from" required placeholder={copy.placeholder} autocomplete="email" aria-label={copy.emailLabel}/>
+          <input type="email" name="email" required placeholder={copy.placeholder} autocomplete="email" aria-label={copy.emailLabel}/>
         </label>
-        <input type="hidden" name="name" value=""/>
-        <input type="hidden" name="description" value={`Suscripción popup landing estudiantes (${locale.toUpperCase()})`}/>
-        <input type="hidden" name="utm_source" value="popup_landing"/>
-        <input type="hidden" name="utm_medium" value="exit_intent_scroll"/>
-        <input type="hidden" name="source" value="web"/>
         <button type="submit" class="sub-popup-cta">{copy.cta} <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
         <p class="sub-popup-msg" data-sub-msg role="status"></p>
       </form>
@@ -88,9 +82,7 @@ const copy = {
     const form=popup.querySelector<HTMLFormElement>('[data-sub-form]');
     const msg=popup.querySelector<HTMLElement>('[data-sub-msg]');
     const input=popup.querySelector<HTMLInputElement>('input[type="email"]');
-    const nameInput=popup.querySelector<HTMLInputElement>('input[name="name"]');
     let open=false;
-    let trigger='scroll';
     function show(){
       if(open||sessionStorage.getItem(SHOWN)||localStorage.getItem(KEY))return;
       open=true;
@@ -98,50 +90,33 @@ const copy = {
       popup.hidden=false;popup.setAttribute('aria-hidden','false');
       document.documentElement.classList.add('sub-popup-open');
       input?.focus();
-      track('subscribe_popup_show',{trigger});
+      track('subscribe_popup_show',{trigger:'timer'});
     }
-    function close(subscribed=false){
+    function close(){
       if(!open)return;
       open=false;
       popup.hidden=true;popup.setAttribute('aria-hidden','true');
       document.documentElement.classList.remove('sub-popup-open');
-      if(subscribed)localStorage.setItem(KEY,'1');
-      track('subscribe_popup_close',{subscribed:String(subscribed)});
+      track('subscribe_popup_close',{subscribed:'false'});
     }
-    function maybeShow(t:string){trigger=t;show()}
-    window.addEventListener('scroll',()=>{
-      const doc=document.documentElement;
-      const depth=(window.scrollY+window.innerHeight)/Math.max(doc.scrollHeight,1);
-      if(depth>=.35)maybeShow('scroll');
-    },{passive:true});
-    document.documentElement.addEventListener('mouseleave',e=>{
-      if(e.clientY<=0)maybeShow('exit_intent');
-    });
+    setTimeout(show,1000);
     popup.addEventListener('click',e=>{if((e.target as HTMLElement).closest('[data-sub-close]'))close()});
     document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
     form?.addEventListener('submit',async e=>{
       e.preventDefault();
-      if(!input?.value||!input.checkValidity()){msg&&(msg.textContent='',msg.hidden=false);return}
+      if(!input?.reportValidity())return;
       const btn=form.querySelector<HTMLButtonElement>('.sub-popup-cta');
       btn&&(btn.disabled=true);
-      nameInput&&(nameInput.value=input.value);
-      const url=form.dataset.odooUrl||'';
-      const fields=new URLSearchParams(new FormData(form) as any);
+      const email=input.value.trim();
+      const fields=new URLSearchParams({name:email,email,list_ids:'3'});
       try{
-        if(url){
-          const res=await fetch(url,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:fields});
-          if(!res.ok)throw new Error(String(res.status));
-        }else{
-          console.warn('[sub-popup] PUBLIC_ODOO_SUBSCRIBE_URL no configurado; lead no enviado a Odoo CRM');
-        }
+        await fetch('https://perinfor.odoo.com/website/form/mailing.contact',{method:'POST',mode:'no-cors',body:fields});
         msg&&(msg.textContent=form.dataset.okMsg||'',msg.hidden=false);
-        track('subscribe_submit',{destination_type:'odoo_crm'});
-        localStorage.setItem(KEY,'1');
-        setTimeout(()=>close(true),2500);
+        track('subscribe_submit',{destination_type:'odoo_mailing'});
       }catch{
         msg&&(msg.textContent=form.dataset.errorMsg||'',msg.hidden=false);
         btn&&(btn.disabled=false);
-        track('subscribe_error',{destination_type:'odoo_crm'});
+        track('subscribe_error',{destination_type:'odoo_mailing'});
       }
     });
   }

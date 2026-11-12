@@ -4,7 +4,7 @@ export const COURSE_URL = 'https://perinfor.odoo.com/slides/acreditacion-tecnico
 export const courseHours = 30;
 export const duration = `Carga formativa estimada de ${courseHours} horas, según el programa facilitado.`;
 export const durationDetail = '30 horas de carga formativa estimada. Este tiempo incluye ver los vídeos, hacer los ejercicios, trabajar de forma individual y completar la evaluación.';
-export const durationNote = 'Este tiempo incluye ver los vídeos, hacer los ejercicios, trabajar de forma individual y completar la evaluación. El tiempo para familiarizarse con los módulos configurado actualmente en la plataforma es de 15 h 10 min.';
+export const durationNote = 'Este tiempo incluye ver los vídeos, hacer los ejercicios, trabajar de forma individual y completar la evaluación. El tiempo para familiarizarse con los módulos configurado actualmente en la plataforma es de 22 h 20 min.';
 export const certification = 'La formación contempla un certificado final. La referencia a COEINF, la entidad emisora, el visado y su denominación y alcance están pendientes de confirmación. No se presenta como una titulación oficial ni garantiza la admisión judicial de informes.';
 export const specialties = [
  ['Prácticas y primer empleo','Aprende a identificar empresas, titulares y riesgos reputacionales.','Documenta con fuentes públicas el contexto de una empresa antes de tu proceso de selección.'],
